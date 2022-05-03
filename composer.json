@@ -1,0 +1,17 @@
+{
+  "name" : "TeamSparrow",
+  "authors" : [
+    {
+      "name": "William Wittig",
+      "email": "wittig.william@student.greenriver.edu"
+    },
+
+    {
+      "name": "Jacob Jonas",
+      "email": "jjonas2@student.greenriver.edu"
+    }
+  ],
+  "require" : {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
