@@ -2,8 +2,8 @@ body{
     background-color: #a4a3a3;
 }
 .nav-link{
-    color: #a4a3a3;
-
+    /*color: #a4a3a3;*/
+    color: black;
 }
 .navbar-expand-lg{
     background-color: #52565bed;
@@ -21,6 +21,15 @@ footer{
     height: 2.5rem;
 }
 .footer{
-    color: #a4a3a3;
+    /*color: #a4a3a3;*/
+    color: black;
     padding-left:5em;
+}
+#orderBtn{
+    background-color: #004aad;
+    color: black;
+}
+#checkOrderBtn{
+    background-color: #52565bed;
+    color: black;
 }
