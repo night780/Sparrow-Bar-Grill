@@ -12,10 +12,62 @@ $f3 = Base::instance();
 session_start();
 
 // Define a default route
-// Home page rendering
 $f3->route('GET /', function() {
     $view = new Template();
     echo $view->render('views/home.html');
+});
+
+// Define a Home route
+$f3->route('GET /home', function() {
+    $view = new Template();
+    echo $view->render('views/home.html');
+});
+
+// Define a VIP route
+$f3->route('GET /VIP', function() {
+    $view = new Template();
+    echo $view->render('views/VIP.html');
+});
+
+// Define a Order Status route
+$f3->route('GET /order-status', function() {
+    $view = new Template();
+    echo $view->render('views/Status.html');
+});
+
+// Define a Promotions route
+$f3->route('GET /Promotions', function() {
+    $view = new Template();
+    echo $view->render('views/Promo.html');
+});
+
+// Define a Order route
+$f3->route('GET /Order', function() {
+    $view = new Template();
+    echo $view->render('views/Order.html');
+});
+
+// Define a Login route
+$f3->route('GET /Login', function() {
+    $view = new Template();
+    echo $view->render('views/Login.html');
+});
+
+// Define a Contact form route
+$f3->route('GET /contact', function() {
+    $view = new Template();
+    echo $view->render('views/Suggestion-Contact.html');
+});
+
+// Define a Contact form route
+$f3->route('GET /Sign-up', function() {
+    $view = new Template();
+    echo $view->render('views/Signup.html');
+});
+// Define a Contact form route
+$f3->route('GET /Sign-in', function() {
+    $view = new Template();
+    echo $view->render('views/SignIn.html');
 });
 
 // Run fat free
