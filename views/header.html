@@ -1,3 +1,12 @@
+<!--
+
+Header page
+
+header.html
+@Authors : William Wittig, Jacob Jonas
+@Last-edit-date : 5/8/22
+-->
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,22 +20,29 @@
     <link rel="stylesheet" href="styles/StyleSheet.css">
     <link rel="icon" type="image/x-icon" href="images/Logos/Sparrow-Grey.ico">
     <title>Sparrow Bar & Grill</title>
-    <nav class="navbar navbar-expand-lg row">
-        <!--Nav Bar for navigating easily-->
-        <div class="navbar" >
-            <div class="navbar-nav text-left">
-                <a class="nav-link" href="home"><b>Home</b></a>
-                <a class="nav-link" href="Order"><b>Order</b></a>
-                <a class="nav-link" href="VIP"><b>Become a VIP</b></a>
-                <a class="nav-link" href="Login"><b>Login</b></a>
-                <a class="nav-link" href="Sign-in"><b>Sign In</b></a>
-            </div>
+
+    <nav class="navbar navbar-expand-lg">
+
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="Home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Order">Order</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="VIP">VIP</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Sign-in">Sign In</a>
+                </li>
+            </ul>
+            <a class="nav-link float-right" href="Sign-up"><b>Sign Up Today!</b></a>
         </div>
     </nav>
+    <p class = "text-center" id = "Promo"><a class="nav-link" href="VIP"><b>VIP on-sale today! </b><small class = "float-right"><b>Use Promo-code : "Sdev328"</b></small></a></p>
 
-               <p class = "text-center" id = "Promo"><a class="nav-link" href="VIP"><b>VIP on-sale today! Sign up Now!</b></a></p>
-
-    <br>
 </head>
 <body>
 

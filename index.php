@@ -35,22 +35,10 @@ $f3->route('GET /order-status', function() {
     echo $view->render('views/Status.html');
 });
 
-// Define a Promotions route
-$f3->route('GET /Promotions', function() {
-    $view = new Template();
-    echo $view->render('views/Promo.html');
-});
-
 // Define a Order route
 $f3->route('GET /Order', function() {
     $view = new Template();
     echo $view->render('views/Order.html');
-});
-
-// Define a Login route
-$f3->route('GET /Login', function() {
-    $view = new Template();
-    echo $view->render('views/Login.html');
 });
 
 // Define a Contact form route
@@ -64,10 +52,16 @@ $f3->route('GET /Sign-up', function() {
     $view = new Template();
     echo $view->render('views/Signup.html');
 });
-// Define a Contact form route
+// Define a Sign-in form route
 $f3->route('GET /Sign-in', function() {
     $view = new Template();
     echo $view->render('views/SignIn.html');
+});
+
+// Define a Sign-up form route
+$f3->route('GET /confirmation', function() {
+    $view = new Template();
+    echo $view->render('views/confirmation.html');
 });
 
 // Run fat free

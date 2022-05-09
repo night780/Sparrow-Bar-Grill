@@ -5,10 +5,11 @@ body{
     /*color: #a4a3a3;*/
     color: black;
     margin-right:2em;
+    background-color: #52565BED;
+    font-weight: bold;
 }
 .navbar-expand-lg{
     background-color: #52565bed;
-
 }
 #Promo{
     background-color: #004aad;
