@@ -1,4 +1,5 @@
 <include href="views/header.html"></include>
+
 <div class = "row">
 <img src="images/Logos/Sparrow-Grey.png" alt="Sparrow bar and grill logo" width="500"
      height="500" class = "col-lg-4 rounded mx-auto d-block">
@@ -12,7 +13,91 @@
         <button type="button" id = "checkOrderBtn" class="btn btn-lg" href="Order">Check Order Status!</button>
     </div>
 </div>
-<div>
+<br><br><br><br><br><br>
+<div class = "row">
+
+    <div class = " container col-lg-7">
+    <div id = "carouselwithIndicators" class = " carousel slide w-50" data-ride = "carousel">
+        <ol class = "carousel-indicators">
+            <li data-target = "#carouselExampleIndicators" data-slide-to = "0" class = "active"></li>
+            <li data-target = "#carouselExampleIndicators" data-slide-to = "1"></li>
+            <li data-target = "#carouselExampleIndicators" data-slide-to = "2s"></li>
+        </ol>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class =" carousel-inner rounded">
+            <div class = "carousel-item active ">
+                <img class = "d-block w-100"
+                     src = "images/Food/Club.jpg"
+                     alt = "First slide"
+                     >
+
+            </div>
+
+            <div class = "carousel-item rounded">
+                <img class = "d-block w-100"
+                     src = "images/Food/smothered-cheese-fries.jpg"
+                     alt = "Second slide"
+                     >
+            </div>
+            <div class = "carousel-item rounded">
+                <img class = "d-block w-100"
+                     src = "images/Food/mega-philly-cheese-melt.jpg"
+                     alt = "Third slide"
+                     >
+            </div>
+        </div>
+        <a class = "carousel-control-prev" href = "#carouselwithIndicators" role = "button" data-slide = "prev">
+            <span class = "carousel-control-prev-icon" aria-hidden = "true"></span>
+            <span class = "sr-only">Previous</span>
+        </a>
+
+        <a class = "carousel-control-next" href = "#carouselwithIndicators" role = "button" data-slide = "next">
+            <span class = "carousel-control-next-icon" aria-hidden = "true"></span>
+            <span class = "sr-only">Next</span>
+        </a>
+    </div>
+</div>
+<div class = "container col-lg-5" id="review">
+    <h2 class="text-center">Leave a review!</h2>
+    <form action="contact"
+          method="POST"
+          name="ReviewForm">
+        <label><b>Name:</b></label><br>
+        <input type="text" size="19" name="Contact-Name" class="form-control textbar"><br>
+        <label><b>Email:</b></label><br>
+        <input type="email" name="Contact-Email" class="form-control textbar"> <br>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label><b>Stars</b></label>
+                <select
+                        class="form-control"
+                        id="Stars"
+                        name="Stars"
+                >
+                    <option value=0>0 Stars</option>
+                    <option value=1>1 Stars</option>
+                    <option value=2>2 Stars</option>
+                    <option value=3>3 Stars</option>
+                    <option value=4>4 Stars</option>
+                    <option value=5>5 Stars</option>
+
+                </select>
+            </div>
+        </div>
+        <br>
+        <label><b>Review:</b></label><br>
+        <textarea name="Contact-Message" rows='6' cols='20' class="form-control">
+    </textarea><br><br>
+        <button type="submit" value="Submit"  class="btn btn-lg float-right" id="ReviewBtn" >Send</button>
+    </form>
 
 </div>
+</div>
+
+
+
 <include href="views/footer.html"></include>
