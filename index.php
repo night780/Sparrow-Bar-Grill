@@ -52,6 +52,7 @@ $f3->route('GET /Sign-up', function() {
     $view = new Template();
     echo $view->render('views/Signup.html');
 });
+
 // Define a Sign-in form route
 $f3->route('GET /Sign-in', function() {
     $view = new Template();

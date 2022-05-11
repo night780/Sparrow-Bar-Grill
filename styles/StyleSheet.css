@@ -1,46 +1,54 @@
-body{
+body {
     background-color: #a4a3a3;
 }
-.nav-link{
+
+.nav-link {
     /*color: #a4a3a3;*/
     color: black;
     margin-right:2em;
     font-weight: bold;
 }
-.navbar-expand-lg{
+
+.navbar-expand-lg {
     background-color: #52565bed;
 }
-#Promo{
+
+#Promo {
     background-color: #004aad;
     text-align: center;
     color: #a4a3a3;
 }
-footer{
-    /*position: absolute;*/
+
+footer {
     bottom: 0;
     width: 100%;
     height: 2.5rem;
 }
-.footer{
-    /*color: #a4a3a3;*/
+
+.footer {
     color: black;
     padding-left:5em;
 }
-#orderBtn{
+
+#orderBtn {
     background-color: #004aad;
     color: black;
 }
-#checkOrderBtn{
+
+#checkOrderBtn {
     background-color: #52565bed;
     color: black;
 }
-#ReviewBtn{
+
+#ReviewBtn {
     background-color: #004aad;
     color: black;
 }
-#review{
+
+#review {
     padding-right:10em;
 }
-#carouselwithIndicators{
+
+#carouselwithIndicators {
     margin-left:10em;
 }
