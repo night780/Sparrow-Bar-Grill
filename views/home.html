@@ -20,16 +20,16 @@ home.html
             Come with friends or make some here!</h5>
         <h5 class="mb-5">Check out our 15 Taps,  Full food & Beverage menu,  10 TV's, Pool &
             Air-hockey,  Dancing, and so much more! </h5>
-        <button type="button" id = "orderBtn"class="btn btn-lg" href="Order">Order Now!</button>
-        <button type="button" id = "checkOrderBtn" class="btn btn-lg" href="Order">Check Order Status!</button>
+        <a class="btn btn-lg btn-primary" href="Order">Order Now!</a>
+        <a class="btn btn-lg btn-secondary" href="Order">Check Order Status!</a>
     </div>
 </div>
 
 <!--Second Container-->
 <div class = "row mt-5 mb-5">
-    <div class = "container col-lg-7">
+    <div class = "container col-lg-6">
         <!--Carousel Images-->
-        <div id = "carouselwithIndicators" class = "carousel slide w-50 mt-5" data-ride = "carousel">
+        <div class = "carousel slide w-70 mt-5 ml-5" data-ride = "carousel">
             <ol class = "carousel-indicators">
                 <li data-target = "#carouselExampleIndicators" data-slide-to = "0" class = "active"></li>
                 <li data-target = "#carouselExampleIndicators" data-slide-to = "1"></li>
@@ -88,7 +88,7 @@ home.html
     </div>
 
     <!-- Review Section -->
-    <div class = "container col-lg-5" id="review">
+    <div class = "container col-lg-6 pr-5">
         <h2 class="text-center mb-5">Leave a review!</h2>
         <form action="contact"
               method="POST"
@@ -105,7 +105,6 @@ home.html
                     <label><b>Stars</b></label>
                     <select
                             class="form-control mb-3"
-                            id="Stars"
                             name="Stars"
                     >
                         <option value=0>0 Stars</option>
@@ -122,7 +121,7 @@ home.html
             <label><b>Review:</b></label>
             <textarea name="Contact-Message" rows='6' cols='20' class="form-control mb-5"></textarea>
 
-            <button type="submit" value="Submit"  class="btn btn-lg float-right" id="ReviewBtn" >Send</button>
+            <a class="btn btn-lg btn-primary text-white float-right">Send</a>
         </form>
     </div>
 </div>
