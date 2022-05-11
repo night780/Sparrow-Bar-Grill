@@ -9,6 +9,7 @@ home.html
 
 <include href="views/header.html"></include>
 
+<!--Main Section-->
 <div class = "row mt-5 mb-5">
     <img src="images/Logos/Sparrow-Grey.png" alt="Sparrow bar and grill logo" width="500"
      height="500" class = "col-lg-4 rounded mx-auto d-block">
@@ -17,111 +18,113 @@ home.html
         <h5 class="mb-3">We are Located in Auburn, WA.</h5>
         <h5 class="mb-3">Sparrow Bar & Grill is Auburn’s newest place to catch a game, eat some grub and enjoy a drink.
             Come with friends or make some here!</h5>
-        <h5 class="mb-3">Check out our 15 Taps,  Full food & Beverage menu,  10 TV's, Pool &
+        <h5 class="mb-5">Check out our 15 Taps,  Full food & Beverage menu,  10 TV's, Pool &
             Air-hockey,  Dancing, and so much more! </h5>
         <button type="button" id = "orderBtn"class="btn btn-lg" href="Order">Order Now!</button>
         <button type="button" id = "checkOrderBtn" class="btn btn-lg" href="Order">Check Order Status!</button>
     </div>
 </div>
 
+<!--Second Container-->
 <div class = "row mt-5 mb-5">
     <div class = "container col-lg-7">
-    <div id = "carouselwithIndicators" class = "carousel slide w-50 mt-5" data-ride = "carousel">
-        <ol class = "carousel-indicators">
-            <li data-target = "#carouselExampleIndicators" data-slide-to = "0" class = "active"></li>
-            <li data-target = "#carouselExampleIndicators" data-slide-to = "1"></li>
-            <li data-target = "#carouselExampleIndicators" data-slide-to = "2s"></li>
-            <li data-target = "#carouselExampleIndicators" data-slide-to = "3s"></li>
-            <li data-target = "#carouselExampleIndicators" data-slide-to = "4s"></li>
-        </ol>
+        <!--Carousel Images-->
+        <div id = "carouselwithIndicators" class = "carousel slide w-50 mt-5" data-ride = "carousel">
+            <ol class = "carousel-indicators">
+                <li data-target = "#carouselExampleIndicators" data-slide-to = "0" class = "active"></li>
+                <li data-target = "#carouselExampleIndicators" data-slide-to = "1"></li>
+                <li data-target = "#carouselExampleIndicators" data-slide-to = "2s"></li>
+                <li data-target = "#carouselExampleIndicators" data-slide-to = "3s"></li>
+                <li data-target = "#carouselExampleIndicators" data-slide-to = "4s"></li>
+            </ol>
 
-        <div class =" carousel-inner rounded">
-            <div class = "carousel-item active ">
-                <img class = "d-block w-100"
-                     src = "images/Food/Club.jpg"
-                     alt = "First food slide"
-                     >
-            </div>
-
-            <div class =" carousel-item rounded">
+            <div class =" carousel-inner rounded">
+                <div class = "carousel-item active ">
                     <img class = "d-block w-100"
-                         src = "images/Food/burgers-sweet-tangy-beef-bacon.jpg"
-                         alt = "First drink slide"
-                    >
-            </div>
+                         src = "images/Food/Club.jpg"
+                         alt = "First food slide"
+                         >
+                </div>
 
-            <div class = "carousel-item rounded">
-                <img class = "d-block w-100"
-                     src = "images/Food/smothered-cheese-fries.jpg"
-                     alt = "Second food slide"
-                     >
-            </div>
+                <div class =" carousel-item rounded">
+                        <img class = "d-block w-100"
+                             src = "images/Food/burgers-sweet-tangy-beef-bacon.jpg"
+                             alt = "First drink slide"
+                        >
+                </div>
 
-            <div class = "carousel-item rounded">
-                <img class = "d-block w-100"
-                     src = "images/Food/mega-philly-cheese-melt.jpg"
-                     alt = "Third food slide"
-                     >
-            </div>
-
-            <div class ="carousel-item rounded">
+                <div class = "carousel-item rounded">
                     <img class = "d-block w-100"
-                         src = "images/Food/appetizer-zesty-nachos.jpg"
-                         alt = "third drink slide"
-                    >
+                         src = "images/Food/smothered-cheese-fries.jpg"
+                         alt = "Second food slide"
+                         >
+                </div>
+
+                <div class = "carousel-item rounded">
+                    <img class = "d-block w-100"
+                         src = "images/Food/mega-philly-cheese-melt.jpg"
+                         alt = "Third food slide"
+                         >
+                </div>
+
+                <div class ="carousel-item rounded">
+                        <img class = "d-block w-100"
+                             src = "images/Food/appetizer-zesty-nachos.jpg"
+                             alt = "third drink slide"
+                        >
+                </div>
             </div>
+
+            <a class = "carousel-control-prev" href = "#carouselwithIndicators" role = "button" data-slide = "prev">
+                <span class = "carousel-control-prev-icon" aria-hidden = "true"></span>
+                <span class = "sr-only">Previous</span>
+            </a>
+
+            <a class = "carousel-control-next" href = "#carouselwithIndicators" role = "button" data-slide = "next">
+                <span class = "carousel-control-next-icon" aria-hidden = "true"></span>
+                <span class = "sr-only">Next</span>
+            </a>
         </div>
+    </div>
 
-        <a class = "carousel-control-prev" href = "#carouselwithIndicators" role = "button" data-slide = "prev">
-            <span class = "carousel-control-prev-icon" aria-hidden = "true"></span>
-            <span class = "sr-only">Previous</span>
-        </a>
+    <!-- Review Section -->
+    <div class = "container col-lg-5" id="review">
+        <h2 class="text-center mb-5">Leave a review!</h2>
+        <form action="contact"
+              method="POST"
+              name="ReviewForm">
 
-        <a class = "carousel-control-next" href = "#carouselwithIndicators" role = "button" data-slide = "next">
-            <span class = "carousel-control-next-icon" aria-hidden = "true"></span>
-            <span class = "sr-only">Next</span>
-        </a>
+            <label><b>Name:</b></label>
+            <input type="text" size="19" name="Contact-Name" class="form-control textbar mb-3">
+
+            <label><b>Email:</b></label>
+            <input type="email" name="Contact-Email" class="form-control textbar mb-3">
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label><b>Stars</b></label>
+                    <select
+                            class="form-control mb-3"
+                            id="Stars"
+                            name="Stars"
+                    >
+                        <option value=0>0 Stars</option>
+                        <option value=1>1 Stars   ⭐</option>
+                        <option value=2>2 Stars   ⭐⭐</option>
+                        <option value=3>3 Stars   ⭐⭐⭐</option>
+                        <option value=4>4 Stars   ⭐⭐⭐⭐</option>
+                        <option value=5>5 Stars   ⭐⭐⭐⭐⭐</option>
+
+                    </select>
+                </div>
+            </div>
+
+            <label><b>Review:</b></label>
+            <textarea name="Contact-Message" rows='6' cols='20' class="form-control mb-5"></textarea>
+
+            <button type="submit" value="Submit"  class="btn btn-lg float-right" id="ReviewBtn" >Send</button>
+        </form>
     </div>
 </div>
-<div class = "container col-lg-5" id="review">
-    <h2 class="text-center mb-5">Leave a review!</h2>
-    <form action="contact"
-          method="POST"
-          name="ReviewForm">
-
-        <label><b>Name:</b></label>
-        <input type="text" size="19" name="Contact-Name" class="form-control textbar mb-3">
-
-        <label><b>Email:</b></label>
-        <input type="email" name="Contact-Email" class="form-control textbar mb-3">
-
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label><b>Stars</b></label>
-                <select
-                        class="form-control mb-3"
-                        id="Stars"
-                        name="Stars"
-                >
-                    <option value=0>0 Stars</option>
-                    <option value=1>1 Stars   ⭐</option>
-                    <option value=2>2 Stars   ⭐⭐</option>
-                    <option value=3>3 Stars   ⭐⭐⭐</option>
-                    <option value=4>4 Stars   ⭐⭐⭐⭐</option>
-                    <option value=5>5 Stars   ⭐⭐⭐⭐⭐</option>
-
-                </select>
-            </div>
-        </div>
-
-        <label><b>Review:</b></label>
-        <textarea name="Contact-Message" rows='6' cols='20' class="form-control mb-5"></textarea>
-
-        <button type="submit" value="Submit"  class="btn btn-lg float-right" id="ReviewBtn" >Send</button>
-    </form>
-</div>
-</div>
-
-
 
 <include href="views/footer.html"></include>
