@@ -1,3 +1,13 @@
 body {
     background-color: #a4a3a3;
 }
+.nav-link,#Contact,#suggestion,#Accessibility, #orderButton1, #orderButton2, #homeReviewButton{
+    color: black;
+    font-weight: bold;
+/*    Bootstrap will not change color to black using text class. Do not remove*/
+}
+#Banner, #Footer, #homeReviewButton, #orderButton1{
+    background-color: #004aad;
+/*    This color is the exact color in the logo to match the page. Do not remove*/
+}
+
