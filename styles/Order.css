@@ -1,0 +1,46 @@
+ul {
+    list-style-type: none;
+}
+
+li {
+    display: inline-block;
+}
+
+input[type="checkbox"][id^="food"] {
+    display: none;
+}
+input[type="checkbox"][id^="drink"] {
+    display: none;
+}
+
+label {
+    border-radius: 5%;
+    border: 1px solid #00000057;
+    padding: 15px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+label::before {
+    display: block;
+    border-radius: 50%;
+    border: 2px solid  #3f51b5c9;
+    border-radius: 30px;
+}
+label img {
+    height: 200px;
+    width: 200px;
+
+}
+:checked+label::before {
+    content: "Selected ✓";
+    transform: scale(1);
+}
+
+:checked+label img {
+    transform: scale(0.9);
+}
+img{
+    border-radius: 5%;
+    opacity: .85;
+}

@@ -3,6 +3,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+
 // Require the autoload file
 require_once('vendor/autoload.php');
 
@@ -36,7 +37,8 @@ $f3->route('GET /order-status', function() {
 });
 
 // Define a Order route
-$f3->route('GET /Order', function() {
+$f3->route('GET|POST /Order', function() {
+    $_SESSION['CT'] = $_POST['CT'];
     $view = new Template();
     echo $view->render('views/Order.html');
 });
@@ -60,7 +62,8 @@ $f3->route('GET /Sign-in', function() {
 });
 
 // Define a Sign-up form route
-$f3->route('GET /confirmation', function() {
+$f3->route('GET|POST /confirmation', function() {
+    var_dump($_SESSION);
     $view = new Template();
     echo $view->render('views/confirmation.html');
 });
