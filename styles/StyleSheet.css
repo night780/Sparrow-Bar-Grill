@@ -17,8 +17,6 @@ body {
     /*    This color is to match the page. Not the same color as secondary. Do not remove*/
 
 }
-:checked+label{
-    border: 3px solid #3f51b5c9;;
-}
+
 
 
