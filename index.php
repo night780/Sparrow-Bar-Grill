@@ -60,6 +60,11 @@ $f3->route('GET /Sign-in', function() {
     $view = new Template();
     echo $view->render('views/SignIn.html');
 });
+// Define a Sign-in form route
+$f3->route('GET|POST /login', function() {
+    $view = new Template();
+    echo $view->render('views/login.php');
+});
 
 // Define a Sign-up form route
 $f3->route('GET|POST /confirmation', function() {
