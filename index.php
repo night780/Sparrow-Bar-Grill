@@ -42,15 +42,19 @@ $f3->route('GET /order-status', function() {
 // Define a Order route
 $f3->route('GET|POST /Order', function($f3) {
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		$food = "None";
+
+        $food = "None";
+
 		if (isset($_POST['food'])) {
 			if (!empty($_POST['food'])) {
 				$food = implode(", ", $_POST['food']);
 			}
 		}
 		$_SESSION['food'] = $food;
-		$drinks = "None";
 
+
+
+		$drinks = "None";
 
 
 		if (isset($_POST['drinks'])) {
@@ -68,6 +72,7 @@ $f3->route('GET|POST /Order', function($f3) {
         $foodValue =0;
         $foodValue = $foodValue +1;
         $_SESSION['foods'] = $_POST[('foods'. $drinkValue.$foodValue )];
+
 
 
         $_SESSION['drinks'] = $drinks;

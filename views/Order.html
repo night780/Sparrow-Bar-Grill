@@ -35,7 +35,7 @@ Order.html
                 <label for="{{ @foods }}">
                     <h5>
                         {{ @foods }}
-                        <div class="small">~  9.99</div>
+                        <div class="small">~  ${{ key(@food) }}</div>
                     </h5>
                     <img src="images/Food/{{ str_replace('/', '', str_replace(' ', '', strtolower(@foods))) }}.jpg"/>
                 </label>
@@ -55,7 +55,7 @@ Order.html
                 <label for="{{ @drink }}">
                     <h5>
                         {{ @drink }}
-                        <div class="small">~  ${{ @drink }}</div>
+                        <div class="small">~  ${{ key(@drinks) }}</div>
                     </h5>
                     <img src="images/Drinks/{{ str_replace(' ', '', strtolower(@drink)) }}.jpg"/>
                 </label>
