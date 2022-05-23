@@ -62,10 +62,12 @@ $f3->route('GET|POST /Order', function($f3) {
 
 
         $drinkValue =0;
-        $_SESSION['drink'] = $_POST[("drink"+ $drinkValue+1 )];
+        $drinkValue = $drinkValue +1;
+        $_SESSION['drink'] = $_POST[('drink'. $drinkValue.$drinkValue )];
 
         $foodValue =0;
-        $_SESSION['foods'] = $_POST[("foods"+ $drinkValue+1 )];
+        $foodValue = $foodValue +1;
+        $_SESSION['foods'] = $_POST[('foods'. $drinkValue.$foodValue )];
 
 
         $_SESSION['drinks'] = $drinks;
