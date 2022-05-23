@@ -60,7 +60,7 @@ $f3->route('GET|POST /Order', function($f3) {
 			}
 		}
 
-
+// This is for the CSS in order. Increments ID (food1,food2,food3...)
         $drinkValue =0;
         $drinkValue = $drinkValue +1;
         $_SESSION['drink'] = $_POST[('drink'. $drinkValue.$drinkValue )];

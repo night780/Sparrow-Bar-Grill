@@ -28,81 +28,31 @@ Order.html
 
 <form class="container text-center" action="#" method="post" id="orderForm">
     <ul>
-        <repeat group="{{ @food }}" value="{{ @item }}">
+        <repeat group="{{ @food }}" value="{{ @foods }}">
             <li>
-                <label>
-                    <input type="checkbox" name="food[]" value="{{ @item }}" />
+                <input type="checkbox" name="food[]" value="{{ @foods }}" id="{{ @foods }}" />
+
+                <label for="{{ @foods }}">
                     <h5>
-                        {{ @item }}
+                        {{ @foods }}
                         <div class="small">~  9.99</div>
                     </h5>
-                    <img src="images/Food/{{ str_replace('/', '', str_replace(' ', '', strtolower(@item))) }}.jpg"/>
+                    <img src="images/Food/{{ str_replace('/', '', str_replace(' ', '', strtolower(@foods))) }}.jpg"/>
                 </label>
             </li>
         </repeat>
-<!--        <li>-->
-<!--            <input type="checkbox" id="food" value="chicken-tender" />-->
-<!--            <label for="food"><h5>Chicken Tenders<div class="small">~  $12.99</div></h5><img src="images/Food/chicken-tender.jpg"/></label>-->
-<!--        </li>-->
-
-<!--        <li>-->
-<!--            <input type="checkbox" id="food1" />-->
-<!--            <label for="food1"><h5>Turkey Club<div class="small">~  $10.99</div></h5><img src="images/Food/Club.jpg"/></label>-->
-<!--        </li>-->
-
-<!--        <li>-->
-<!--            <input type="checkbox" id="food2" />-->
-<!--            <label for="food2"> <h5>Fresh Salmon<div class = "small">~  $15.99</div></h5><img src="images/Food/salmon.jpg" /></label>-->
-<!--        </li>-->
-
-<!--        <li>-->
-<!--            <input type="checkbox" id="food3" />-->
-<!--            <label for="food3"> <h5>Mega philly Cheese Melt<div class = "small">~  $10.99</div></h5><img src="images/Food/mega-philly-cheese-melt.jpg" /></label>-->
-<!--        </li>-->
-
-<!--        <li>-->
-<!--            <input type="checkbox" id="food4" value="chicken-tender" />-->
-<!--            <label for="food4"><h5>1/3lb Cheeseburger<div class = "small">~  $15.99</div></h5><img src="images/Food/burgers-beef-bacon-cheeseburger.jpg" /></label>-->
-<!--        </li>-->
-
-<!--        <li>-->
-<!--            <input type="checkbox" id="food5" />-->
-<!--            <label for="food5"><h5>Crazy Spicy Skillet<div class = "small">~  $10.99</div></h5><img src="images/Food/skillets-crazy-spicy.jpg" /></label>-->
-<!--        </li>-->
-
-<!--        <li>-->
-<!--            <input type="checkbox" id="food6" />-->
-<!--            <label for="food6"> <h5> Steaks Sirloin & Eggs<div class = "small">~  $12.99</div></h5><img src="images/Food/steaks-sirloin-eggs.jpg" /></label>-->
-<!--        </li>-->
-
-<!--        <li>-->
-<!--            <input type="checkbox" id="food7" />-->
-<!--            <label for="food7"> <h5>Supreme Skillet<div class = "small">~  $10.99</div></h5><img src="images/Food/skillets-supreme-skillet.jpg" /></label>-->
-<!--        </li>-->
-
-<!--        <li>-->
-<!--            <input type="checkbox" id="food8" />-->
-<!--            <label for="food8"><h5>Smothered Cheese Fries<div class = "small">~  $11.99</div></h5><img src="images/Food/smothered-cheese-fries.jpg" /></label>-->
-<!--        </li>-->
-
-<!--        <li>-->
-<!--            <input type="checkbox" id="food9" />-->
-<!--            <label for="food9"> <h5>Zesty Nachos<div class = "small">~  $9.99</div></h5><img src="images/Food/appetizer-zesty-nachos.jpg" /></label>-->
-<!--        </li>-->
-
-<!--        <li>-->
-<!--            <input type="checkbox" id="food10" />-->
-<!--            <label for="food10"> <h5>Sweet Tangy Bacon Burger<div class = "small">~  $15.99</div></h5><img src="images/Food/burgers-sweet-tangy-beef-bacon.jpg" /></label>-->
-<!--        </li>-->
     </ul>
+
+
 
     <hr class="style1">
 
     <ul>
-        <repeat group="{{ @drinks }}" value="{{ @drink }}">
+        <repeat group="{{ @drinks }}" value="{{ @drink }}" >
             <li>
-                <label>
-                    <input type="checkbox" name="drinks[]" value="{{ @drink }}" />
+                <input type="checkbox" name="drinks[]" value="{{ @drink }}" id = "{{ @drink }}"/>
+
+                <label for="{{ @drink }}">
                     <h5>
                         {{ @drink }}
                         <div class="small">~  ${{ @drink }}</div>
@@ -110,6 +60,7 @@ Order.html
                     <img src="images/Drinks/{{ str_replace(' ', '', strtolower(@drink)) }}.jpg"/>
                 </label>
             </li>
+
         </repeat>
 
 <!--        <li>-->
@@ -117,40 +68,6 @@ Order.html
 <!--            <label for="drink"><h5>BudLight<div class = "small">~  $4.99</div></h5><img src="images/Drinks/Beer/budlight.jpg" /></label>-->
 <!--        </li>-->
 
-<!--        <li>-->
-<!--            <input type="checkbox" id="drink1" />-->
-<!--            <label for="drink1"><h5>Busch<div class = "small">~  $4.99</div></h5><img src="images/Drinks/Beer/busch.jpg" /></label>-->
-<!--        </li>-->
-
-<!--        <li>-->
-<!--            <input type="checkbox" id="drink2" />-->
-<!--            <label for="drink2"> <h5>Sam Adams<div class = "small">~  $4.99</div></h5><img src="images/Drinks/Beer/SamAdams.jpg" /></label>-->
-<!--        </li>-->
-
-<!--        <li>-->
-<!--            <input type="checkbox" id="drink3" />-->
-<!--            <label for="drink3"> <h5>Corona<div class = "small">~  $4.99</div></h5><img src="images/Drinks/Beer/Corona.jpg" /></label>-->
-<!--        </li>-->
-
-<!--        <li>-->
-<!--            <input type="checkbox" id="drink4" value="chicken-tender" />-->
-<!--            <label for="drink4"><h5>Mojito<div class = "small">~  $11.50</div></h5><img src="images/Drinks/Cocktails/Mojito.png" /></label>-->
-<!--        </li>-->
-
-<!--        <li>-->
-<!--            <input type="checkbox" id="drink5" />-->
-<!--            <label for="drink5"><h5>Cosmopolitan<div class = "small">~  $11.50</div></h5><img src="images/Drinks/Cocktails/Cosmopolitan.png" /></label>-->
-<!--        </li>-->
-
-<!--        <li>-->
-<!--            <input type="checkbox" id="drink6" />-->
-<!--            <label for="drink6"> <h5>Negroni<div class = "small">~  $11.50</div></h5><img src="images/Drinks/Cocktails/Negroni.png" /></label>-->
-<!--        </li>-->
-
-<!--        <li>-->
-<!--            <input type="checkbox" id="drink7" />-->
-<!--            <label for="drink7"> <h5>WhiskeySour<div class = "small">~  $11.50</div></h5><img src="images/Drinks/Cocktails/WhiskeySour.png" /></label>-->
-<!--        </li>-->
     </ul>
 
     <div class="text-right">
