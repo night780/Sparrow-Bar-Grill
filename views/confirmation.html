@@ -15,6 +15,11 @@ StyleSheet.css
     if user is VIP we thank and add to there loyalty points. If not a VIP user, we print how many points they could have <br>
         saved, and link them to the VIP signup page
     </p>
+
+    <div class="p-2 border rounded-bottom">
+        <span class="d-block">Food: {{ @SESSION.food }}</span>
+        <span class="d-block">Drinks: {{ @SESSION.drinks }}</span>
+    </div>
 </div>
 
 <include href="includes/footer.html"></include>
