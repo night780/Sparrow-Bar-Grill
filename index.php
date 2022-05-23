@@ -49,15 +49,26 @@ $f3->route('GET|POST /Order', function($f3) {
 			}
 		}
 		$_SESSION['food'] = $food;
-
 		$drinks = "None";
+
+
+
 		if (isset($_POST['drinks'])) {
 			if (!empty($_POST['drinks'])) {
 				$drinks = implode(", ", $_POST['drinks']);
+
 			}
 		}
-		$_SESSION['drinks'] = $drinks;
 
+
+        $drinkValue =0;
+        $_SESSION['drink'] = $_POST[("drink"+ $drinkValue+1 )];
+
+        $foodValue =0;
+        $_SESSION['foods'] = $_POST[("foods"+ $drinkValue+1 )];
+
+
+        $_SESSION['drinks'] = $drinks;
 		$_SESSION['CT'] = $_POST['CT'];
 
 		if (empty($f3->get('errors'))) {
