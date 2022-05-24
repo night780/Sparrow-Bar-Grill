@@ -20,7 +20,7 @@ label {
 
 label::before {
     display: block;
-    border: 2px solid  #3f51b5c9;
+    border: 2px solid #3f51b5c9;
     border-radius: 30px;
 }
 
@@ -30,20 +30,20 @@ label img {
 
 }
 
-:checked+label::before {
+:checked + label::before {
     content: "Selected ✓";
     transform: scale(1);
 }
 
-:checked+label img {
+:checked + label img {
     transform: scale(0.9);
 }
 
-img{
+img {
     border-radius: 5%;
     opacity: .85;
 }
 
-:checked+label{
+:checked + label {
     border: 3px solid #3f51b5c9;;
 }

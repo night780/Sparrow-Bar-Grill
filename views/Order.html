@@ -20,9 +20,9 @@ Order.html
     <p>Construction! Please come back later</p>
     <p> Here a user will be able to place an order. We will offer
         lunch and dinner menus that change each day around 5pm
-    <br>The drink menu will be available all the time. A VIP user will see there
+        <br>The drink menu will be available all the time. A VIP user will see there
         loyalty points and use them for a % off there order.
-<br>Order placed -> <a href = "confirmation">confirmation page</a>
+        <br>Order placed -> <a href="confirmation">confirmation page</a>
     </p>
 </div>
 
@@ -30,12 +30,12 @@ Order.html
     <ul>
         <repeat group="{{ @food }}" value="{{ @foods }}">
             <li>
-                <input type="checkbox" name="food[]" value="{{ @foods }}" id="{{ @foods }}" />
+                <input type="checkbox" name="food[]" value="{{ @foods }}" id="{{ @foods }}"/>
 
                 <label for="{{ @foods }}">
                     <h5>
                         {{ @foods }}
-                        <div class="small">~  ${{ key(@food) }}</div>
+                        <div class="small">~ ${{ key(@food) }}</div>
                     </h5>
                     <img src="images/Food/{{ str_replace('/', '', str_replace(' ', '', strtolower(@foods))) }}.jpg"/>
                 </label>
@@ -44,18 +44,17 @@ Order.html
     </ul>
 
 
-
     <hr class="style1">
 
     <ul>
-        <repeat group="{{ @drinks }}" value="{{ @drink }}" >
+        <repeat group="{{ @drinks }}" value="{{ @drink }}">
             <li>
-                <input type="checkbox" name="drinks[]" value="{{ @drink }}" id = "{{ @drink }}"/>
+                <input type="checkbox" name="drinks[]" value="{{ @drink }}" id="{{ @drink }}"/>
 
                 <label for="{{ @drink }}">
                     <h5>
                         {{ @drink }}
-                        <div class="small">~  ${{ key(@drinks) }}</div>
+                        <div class="small">~ ${{ key(@drinks) }}</div>
                     </h5>
                     <img src="images/Drinks/{{ str_replace(' ', '', strtolower(@drink)) }}.jpg"/>
                 </label>
@@ -63,10 +62,10 @@ Order.html
 
         </repeat>
 
-<!--        <li>-->
-<!--            <input type="checkbox" id="drink" value="BudLight" />-->
-<!--            <label for="drink"><h5>BudLight<div class = "small">~  $4.99</div></h5><img src="images/Drinks/Beer/budlight.jpg" /></label>-->
-<!--        </li>-->
+        <!--        <li>-->
+        <!--            <input type="checkbox" id="drink" value="BudLight" />-->
+        <!--            <label for="drink"><h5>BudLight<div class = "small">~  $4.99</div></h5><img src="images/Drinks/Beer/budlight.jpg" /></label>-->
+        <!--        </li>-->
 
     </ul>
 

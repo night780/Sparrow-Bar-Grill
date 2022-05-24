@@ -1,8 +1,8 @@
 <?php
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require("includes/functions.php");
 
-    if(check_login($_POST['user'], $_POST['pass'])){
+    if (check_login($_POST['user'], $_POST['pass'])) {
         session_start();
         $_SESSION['user'] = "admin";
         header("Location: views/home");
@@ -14,8 +14,8 @@ $page_title = "Login";
 ?>
 <include href="includes/header.html"></include></div>
 <div
-    id="jumbotronContainer"
-    class="d-flex align-items-center justify-content-center"
+        id="jumbotronContainer"
+        class="d-flex align-items-center justify-content-center"
 >
     <div class="card mt-4">
         <article class="card-body">
@@ -24,10 +24,10 @@ $page_title = "Login";
                 <div class="form-group">
                     <label>Your Username (admin)</label>
                     <input
-                        name="user"
-                        id="user"
-                        class="form-control"
-                        placeholder="Username"
+                            name="user"
+                            id="user"
+                            class="form-control"
+                            placeholder="Username"
                     />
                     <span id="emailErr" class="text-danger error"
                     >That is the incorrect email</span
@@ -37,11 +37,11 @@ $page_title = "Login";
                 <div class="form-group">
                     <label>Your password (@dm1n)</label>
                     <input
-                        id="pass"
-                        name="pass"
-                        class="form-control"
-                        placeholder="******"
-                        type="password"
+                            id="pass"
+                            name="pass"
+                            class="form-control"
+                            placeholder="******"
+                            type="password"
                     />
                     <span id="passwordErr" class="text-danger error"
                     >That is the incorrect password</span>
@@ -49,7 +49,7 @@ $page_title = "Login";
                 <!-- form-group// -->
                 <div class="form-group">
                     <div class="checkbox">
-                        <label> <input type="checkbox" /> Save password </label>
+                        <label> <input type="checkbox"/> Save password </label>
                     </div>
                     <!-- checkbox .// -->
                 </div>
