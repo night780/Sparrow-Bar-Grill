@@ -25,4 +25,17 @@ body {
     margin-right:2em;
 }
 
+@media only screen and (max-width: 1000px) {
+    #sparrow {
+        height: 100%;
+        width: 100%;
+    }
+}
+@media only screen and (min-width: 800px) {
+    #sparrow {
+        height: 50%;
+        width: 50%;
+    }
+}
+
 
