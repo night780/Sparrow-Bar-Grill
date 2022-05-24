@@ -17,6 +17,12 @@ body {
     /*    This color is to match the page. Not the same color as secondary. Do not remove*/
 
 }
-
+#NAV, #Banner, #Footer{
+    margin: 0em -1em 0.5em 0em;
+    border:none;
+}
+#signUp{
+    margin-right:2em;
+}
 
 
