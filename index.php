@@ -3,9 +3,9 @@
 ini_set('display_errors',1);
 error_reporting(E_ALL);
 
-
 // Require the autoload file
 require_once('vendor/autoload.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/../config.php');
 
 // Create instance of the base class
 $f3=Base::instance();
@@ -42,12 +42,34 @@ $f3->route('GET /order-status',function() {
 // Order -> Confirmation
 // Define a Order route
 $f3->route('GET|POST /Order',function($f3) {
+
 	global $con;
 	$con->order();
 });
 
 // Define a Sign-up form route
-$f3->route('GET|POST /confirmation',function() {
+$f3->route('GET|POST /confirmation',function() use ($dbh) {
+
+    //1. define a query
+    $sql = "INSERT INTO orders (food, drinks, total) VALUES (:food,:drinks,:total)";
+
+    //2. prepare a statement ($dbh is in config.php so cannot see in editor)
+    $statement = $dbh->prepare($sql);
+
+    //3. bind parameters
+    var_dump($_POST);
+
+    $food = $_SESSION['food'];
+    $drinks = $_SESSION['drinks'];
+    $total = $_SESSION['total'];
+
+    $statement->bindParam(':food', $food, PDO::PARAM_STR);
+    $statement->bindParam(':drinks', $drinks, PDO::PARAM_STR);
+    $statement->bindParam(':total', $total, PDO::PARAM_STR);
+
+//4. execute
+    $statement->execute();
+
 	global $con;
 	$con->confirmation();
 });
