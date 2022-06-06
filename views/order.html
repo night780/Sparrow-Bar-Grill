@@ -8,12 +8,12 @@ TODO: Setup/fix Form Posting, Add qty update when clicked. When user field is ma
 
 Order placed -> confirmation page
 
-Order.html
+order.html
 @Authors : William Wittig, Jacob Jonas
 @Last-edit-date : 5/8/22
 -->
 
-<include href="includes/header.html"></include>
+<include href="views/header.html"></include>
 <link rel="stylesheet" href="styles/Order.css">
 
 <div class="text-center"><h1>Order Page</h1>
@@ -30,9 +30,8 @@ Order.html
     <ul>
         <repeat group="{{ @food }}" value="{{ @foods }}">
             <li>
-                <input type="checkbox" name="food[]" value="{{ @foods }}" id="{{ @foods }}"/>
-
                 <label for="{{ @foods }}">
+                    <input type="checkbox" name="food[]" value="{{ @foods }}" id="{{ @foods }}"/>
                     <h5>
                         {{ @foods }}
                         <div class="small">~ ${{ key(@food) }}</div>
@@ -75,4 +74,4 @@ Order.html
     </div>
 </form>
 
-<include href="includes/footer.html"></include>
+<include href="views/footer.html"></include>
