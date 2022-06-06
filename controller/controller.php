@@ -1,32 +1,59 @@
 <?php
 
+/**
+ * Controller Class, called from Index controls routing and page logic
+ */
 class Controller
 {
+    /**
+     * f3 hive var
+     * @var
+     */
     private $_f3;
 
+    /**
+     * f3 default constructor
+     * @param $f3
+     */
     function __construct($f3)
     {
         $this->_f3 = $f3;
     }
 
+    /**
+     * home routing
+     * @return void
+     */
     function home()
     {
         $view = new Template();
         echo $view->render('views/home.html');
     }
 
+    /**
+     * vip page routing
+     * @return void
+     */
     function vip()
     {
         $view = new Template();
         echo $view->render('views/vip.html');
     }
 
+    /**
+     * Checks order status via order status page
+     * @return void
+     */
     function orderStatus()
     {
         $view = new Template();
         echo $view->render('views/status.html');
     }
 
+    /**
+     * order page routing
+     * @return void
+     */
     function order()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -74,6 +101,10 @@ class Controller
         echo $view->render('views/order.html');
     }
 
+    /**
+     * order confirmation page routing
+     * @return void
+     */
     function confirmation()
     {
 
@@ -83,24 +114,40 @@ class Controller
         session_destroy();
     }
 
+    /**
+     * Contact us page routing
+     * @return void
+     */
     function contact()
     {
         $view = new Template();
         echo $view->render('views/suggestionContact.html');
     }
 
+    /**
+     * Signup page routing
+     * @return void
+     */
     function signUp()
     {
         $view = new Template();
         echo $view->render('views/signUp.html');
     }
 
+    /**
+     * Sign in Page routing
+     * @return void
+     */
     function signIn()
     {
         $view = new Template();
         echo $view->render('views/signIn.html');
     }
 
+    /**
+     * Login poge routing
+     * @return void
+     */
     function logIn()
     {
         $view = new Template();
