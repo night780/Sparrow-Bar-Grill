@@ -14,8 +14,8 @@ https://jjonas3.greenriverdev.com/328/Sparrow-Project
 <br>
 https://wwittig.greenriverdev.com/328/Sparrow-Project
 <br><br>
-The Sparrow Bar & Grill is a dining experience, 
-we offer amazing drinks, food on our website.
+The Sparrow Bar & Grill is a dining experience. 
+We offer amazing drinks, food on our website.
 <br>
 <br>
 This is a OOP group project for SDEV 328, Spring 2022
