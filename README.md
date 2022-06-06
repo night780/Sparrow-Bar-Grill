@@ -11,6 +11,7 @@ https://trello.com/b/J9LsthB2/sparrow-project
 <b>Project Websites:</b>
 <br>
 https://jjonas3.greenriverdev.com/328/Sparrow-Project
+<br>
 https://wwittig.greenriverdev.com/328/Sparrow-Project
 <br><br>
 The Sparrow Bar & Grill is a dining experience, 
