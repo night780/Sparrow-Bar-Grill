@@ -3,6 +3,9 @@ Sdev 328, team sparrow
 <br><br>
 <b>Authors:</b> Jacob J, William W
 <br>
+<br>
+<b>Project Organization:</b>
+<br>
 https://trello.com/b/J9LsthB2/sparrow-project
 <br><br>
 <b>Project Websites:</b>
