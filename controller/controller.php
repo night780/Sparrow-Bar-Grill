@@ -90,6 +90,7 @@ class Controller
 
 
             if (empty($this->_f3->get('errors'))) {
+				var_dump($_SESSION);
                 header('location: confirmation');
             }
         }
@@ -107,8 +108,7 @@ class Controller
      */
     function confirmation()
     {
-
-        // var_dump($_SESSION);
+        var_dump($_SESSION);
         $view = new Template();
         echo $view->render('views/confirmation.html');
         session_destroy();
