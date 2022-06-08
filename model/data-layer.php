@@ -20,7 +20,7 @@ class DataLayer
      */
     function __construct()
 	{
-		require_once($_SERVER['DOCUMENT_ROOT'].'/../config.php');
+		//require_once($_SERVER['DOCUMENT_ROOT'].'/../config.php');
 		$dbh = 5;
 		$this->_dbh = $dbh;
 	}
