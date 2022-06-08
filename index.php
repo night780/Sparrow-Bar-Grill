@@ -4,71 +4,73 @@
 ini_set('display_errors',1);
 error_reporting(E_ALL);
 
+//Session Starts here
+session_start();
+
 // Require the autoload file
 require_once('vendor/autoload.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/../config.php');
+//require_once($_SERVER['DOCUMENT_ROOT'] . '/../config.php');
+require_once('config.php');
 
 // Create instance of the base class
 $f3=Base::instance();
-
-//Sesion Starts here
-session_start();
 
 //Instance of DataLayer and Controller
 $dataLayer = new DataLayer();
 $con = new Controller($f3);
 
-
-$f3->route(/**
+/**
  * default page routing
  * @return void
- */ 'GET /',function() {
+ */
+$f3->route('GET /',function() {
 	global $con;
 	$con->home();
 });
 
-
-$f3->route(/**
+/**
  * home page routing
  * @return void
- */ 'GET /home',function() {
+ */
+$f3->route('GET /home',function() {
 	global $con;
 	$con->home();
 });
 
-
-$f3->route(/**
+/**
  * VIP page routing
  * @return void
- */ 'GET /VIP',function() {
+ */
+$f3->route('GET /VIP',function() {
 	global $con;
 	$con->vip();
 });
 
-
-$f3->route(/**
+/**
  * Checks order status via order status page
  * @return void
- */ 'GET /order-status',function() {
+ */
+$f3->route('GET /order-status',function() {
 	global $con;
 	$con->orderStatus();
 });
 
-
-$f3->route(/**
+/**
  * order page routing
  * @param $f3
  * @return void
- */ 'GET|POST /Order',function($f3) {
+ */
+$f3->route('GET|POST /Order',function($f3) {
 
 	global $con;
 	$con->order();
 });
 
-$f3->route(/**
+/**
  * order confirmation page routing
  * @return void
- */ 'GET|POST /confirmation',function() use ($dbh) {
+ */
+$f3->route('GET|POST /confirmation',function() use ($dbh) {
 
     //1. define a query
     $sql = "INSERT INTO orders (food, drinks, total) VALUES (:food,:drinks,:total)";
@@ -87,43 +89,45 @@ $f3->route(/**
     $statement->bindParam(':drinks', $drinks, PDO::PARAM_STR);
     $statement->bindParam(':total', $total, PDO::PARAM_STR);
 
-//4. execute
+	//4. execute
     $statement->execute();
 
 	global $con;
 	$con->confirmation();
 });
 
-$f3->route(/**
+/**
  * Contact form route
  * @return void
- */ 'GET /contact',function() {
+ */
+$f3->route('GET /contact',function() {
 	global $con;
 	$con->contact();
 });
 
-
-$f3->route(/**
+/**
  * Sign up form route
  * @return void
- */ 'GET /Sign-up',function() {
+ */
+$f3->route('GET /Sign-up',function() {
 	global $con;
 	$con->signUp();
 });
 
-
-$f3->route(/**
+/**
  * Sign-in form route
  * @return void
- */ 'GET /Sign-in',function() {
+ */
+$f3->route('GET /Sign-in',function() {
 	global $con;
 	$con->signIn();
 });
 
-$f3->route(/**
+/**
  * Log-in form route
  * @return void
- */ 'GET|POST /login',function() {
+ */
+$f3->route('GET|POST /login',function() {
 	global $con;
 	$con->logIn();
 });
