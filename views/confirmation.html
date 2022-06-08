@@ -9,17 +9,10 @@ styleSheet.css
 
 <include href="views/includes/header.html"></include>
 <div class="text-center"><h1>Confirmation page</h1>
-    <p>Construction! Please come back later</p>
-    <p>Here is where orders will be sent too, printing there placed order and <br>
-        a order processed or order not processed notification. <br>
-        if user is VIP we thank and add to there loyalty points. If not a VIP user, we print how many points they could
-        have <br>
-        saved, and link them to the VIP signup page
-    </p>
-
     <div class="p-2 border rounded-bottom">
         <span class="d-block">Food: {{ @SESSION.food }}</span>
         <span class="d-block">Drinks: {{ @SESSION.drinks }}</span>
+        <span class="d-block">Total: {{ @SESSION.total }}</span>
     </div>
 </div>
 

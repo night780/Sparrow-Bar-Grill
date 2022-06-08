@@ -16,34 +16,34 @@ order.html
 <include href="views/includes/header.html"></include>
 <link rel="stylesheet" href="styles/order.css">
 
-<div class="text-center"><h1>Order Page</h1>
-    <p>Construction! Please come back later</p>
-    <p> Here a user will be able to place an order. We will offer
-        lunch and dinner menus that change each day around 5pm
-        <br>The drink menu will be available all the time. A VIP user will see there
-        loyalty points and use them for a % off there order.
-        <br>Order placed -> <a href="confirmation">confirmation page</a>
-    </p>
+<div class="text-center">
+    <h1>Order Page</h1>
+    <hr class="style1">
 </div>
 
 <form class="container text-center" action="#" method="post" id="orderForm">
+    <h1 class="text-center mt-5">Entrees</h1>
     <ul>
         <repeat group="{{ @food }}" value="{{ @foods }}">
             <li>
                 <input type="checkbox" name="food[]" value="{{ @foods }}" id="{{ @foods }}"/>
                 <label for="{{ @foods }}">
                     <h5>
-                        {{ @foods }}
-                        <div class="small">~ ${{ key(@food) }}</div>
+                        {{ key(@food) }}
+                        <div class="small">~ ${{ @foods }}</div>
                     </h5>
-                    <img src="images/Food/{{ str_replace('/', '', str_replace(' ', '', strtolower(@foods))) }}.jpg"/>
+                    <img src="images/Food/{{ str_replace('/', '', str_replace(' ', '', strtolower(key(@food)))) }}.jpg"/>
+                    <div class="d-block mt-3">
+                        <input class="form-control w-50 border-round text-center mx-auto" type="number" value="0">
+                    </div>
                 </label>
             </li>
         </repeat>
     </ul>
 
-
     <hr class="style1">
+
+    <h1 class="text-center mt-5">Drinks</h1>
 
     <ul>
         <repeat group="{{ @drinks }}" value="{{ @drink }}">
@@ -52,17 +52,20 @@ order.html
 
                 <label for="{{ @drink }}">
                     <h5>
-                        {{ @drink }}
-                        <div class="small">~ ${{ key(@drinks) }}</div>
+                        {{ key(@drinks) }}
+                        <div class="small">~ ${{ @drink }}</div>
                     </h5>
-                    <img src="images/Drinks/{{ str_replace(' ', '', strtolower(@drink)) }}.jpg"/>
+                    <img src="images/Drinks/{{ str_replace(' ', '', strtolower(key(@drinks))) }}.jpg"/>
+                    <div class="d-block mt-3">
+                        <input class="form-control w-50 border-round text-center mx-auto" type="number" value="0">
+                    </div>
                 </label>
             </li>
 
         </repeat>
     </ul>
 
-    <div class="text-right">
+    <div class="text-right mt-4 mb-5">
         <!--submit-->
         <button class="btn btn-lg" type="submit" id="PlaceOrderButton">Place Order</button>
     </div>

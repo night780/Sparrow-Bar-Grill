@@ -88,6 +88,8 @@ class Controller
             $_SESSION['drinks'] = $drinks;
             $_SESSION['CT'] = $_POST['CT'];
 
+			// Total cost
+			$_SESSION['total'] = 10.00;
 
             if (empty($this->_f3->get('errors'))) {
 				var_dump($_SESSION);

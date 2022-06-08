@@ -73,7 +73,7 @@ $f3->route('GET|POST /Order',function($f3) {
 $f3->route('GET|POST /confirmation',function() use ($dbh) {
 
     //1. define a query
-    $sql = "INSERT INTO orders (food, drinks, total) VALUES (:food,:drinks,:total)";
+    $sql = "INSERT INTO orders (accountNum, food, drinks, total) VALUES (:accountNum, :food,:drinks,:total)";
 
     //2. prepare a statement ($dbh is in config.php so cannot see in editor)
     $statement = $dbh->prepare($sql);
@@ -81,10 +81,12 @@ $f3->route('GET|POST /confirmation',function() use ($dbh) {
     //3. bind parameters
     var_dump($_POST);
 
+	$accountNum = 1234;
     $food = $_SESSION['food'];
     $drinks = $_SESSION['drinks'];
     $total = $_SESSION['total'];
 
+	$statement->bindParam(':accountNum', $accountNum, PDO::PARAM_STR);
     $statement->bindParam(':food', $food, PDO::PARAM_STR);
     $statement->bindParam(':drinks', $drinks, PDO::PARAM_STR);
     $statement->bindParam(':total', $total, PDO::PARAM_STR);
