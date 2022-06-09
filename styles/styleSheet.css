@@ -13,7 +13,7 @@ body {
     /*    This color is the exact color in the logo to match the page. Do not remove*/
 }
 
-.SignInButton,.contactFormButton,#orderButton2,#click,#sign, NAV, #homeReviewButton, #PlaceOrderButton {
+.SignInButton, .contactFormButton, #orderButton2, #click, #sign, NAV, #homeReviewButton, #PlaceOrderButton {
     background-color: #52565bed;
     /*    This color is to match the page. Not the same color as secondary. Do not remove*/
 }
@@ -45,23 +45,28 @@ body {
     color: darkred;
     display: none;
 }
-#ID, .sign{
+
+#ID, .sign {
     background: #004aad3b;
 }
 
-#Signup1{
+#Signup1 {
     padding-left: 30%;
-    padding-right: 30%;'
+    padding-right: 30%;
+'
 }
-.buttonVIP, .contactForm{
+
+.buttonVIP, .contactForm {
     background: #004aad3b;
     color: black;
 }
-.buttonVIPTable{
+
+.buttonVIPTable {
     background: #004aada1;
     color: black;
 }
-#item-success{
+
+#item-success {
     margin-left: 30%;
     margin-right: 30%;
     opacity: .65;

@@ -3,7 +3,8 @@
 /**
  *Member class is when a customer makes a new account
  */
-Class Member{
+class Member
+{
     /**
      * Account ID num
      * @var int|mixed|string
@@ -38,16 +39,16 @@ Class Member{
 
     /**
      * Member constructor
-     * @param $ID
-     * @param $fname
-     * @param $lname
-     * @param $birth
-     * @param $phone
-     * @param $status
+     * @param string $ID
+     * @param string $fname
+     * @param string $lname
+     * @param int $birth
+     * @param int $phone
+     * @param boolean $status
      */
-    public function __construct($ID = '', $fname='', $lname='', $birth='',
-                                $phone='',
-                                $status='')
+    public function __construct(string $ID = '', string $fname = '',
+                                string $lname = '', int $birth = 010101,
+                                int    $phone = 2533333333, boolean $status)
     {
         $this->_ID = $ID;
         $this->_fname = $fname;

@@ -1,5 +1,6 @@
 # Sparrow-Project
-Sdev 328, team sparrow 
+
+Sdev 328, team sparrow
 <br><br>
 <b>Authors:</b> Jacob J, William W
 <br>
@@ -14,12 +15,12 @@ https://jjonas3.greenriverdev.com/328/Sparrow-Project
 <br>
 https://wwittig.greenriverdev.com/328/Sparrow-Project
 <br><br>
-The Sparrow Bar & Grill is a dining experience. 
-We offer amazing drinks, food on our website.
+The Sparrow Bar & Grill is a dining experience. We offer amazing drinks, food
+on our website.
 <br>
 <br>
 This is a OOP group project for SDEV 328, Spring 2022
 <br>
 <br>
-<b>Disclaimer:</b> Sparrow Bar & Grill is not a real business, no goods 
-listed for sale are available for purchase. Demo purposes only.
+<b>Disclaimer:</b> Sparrow Bar & Grill is not a real business, no goods listed
+for sale are available for purchase. Demo purposes only.

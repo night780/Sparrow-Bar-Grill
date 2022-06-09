@@ -91,14 +91,12 @@ class Controller
             $_SESSION['foods'] = $_POST[('foods' . $foodValue)];
 
 
-
             $_SESSION['drinks'] = $drinks;
             $_SESSION['CT'] = $_POST['CT'];
 
 
-
             if (empty($this->_f3->get('errors'))) {
-				var_dump($_SESSION);
+                var_dump($_SESSION);
                 header('location: confirmation');
             }
         }

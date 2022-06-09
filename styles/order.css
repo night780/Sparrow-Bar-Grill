@@ -9,7 +9,8 @@ li {
 input[type="checkbox"] {
     display: none;
 }
-.quantity,.quantity1{
+
+.quantity, .quantity1 {
     display: none;
 }
 
@@ -57,18 +58,23 @@ img {
     border: 1px dotted #ccc;
     margin: 2%;
 }
+
 .qty {
     width: 40px;
     height: 25px;
     text-align: center;
 }
-.plus,.minus { width:35px; height:35px;
+
+.plus, .minus {
+    width: 35px;
+    height: 35px;
     border: none;
     opacity: .85;
     border-radius: 30px;
 
 }
-.quantity{
+
+.quantity {
     opacity: .85;
     border-radius: 30px;
 

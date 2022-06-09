@@ -24,6 +24,7 @@ order.html
 <form class="container text-center" action="#" method="post" id="orderForm">
     <h1 class="text-center mt-5">Entrees</h1>
     <ul>
+
         <repeat group="{{ @food }}" value="{{ @foods }}" class="food">
             <li>
                 <input type="checkbox" name="food[]" value="{{ @foods }}"
@@ -34,48 +35,49 @@ order.html
                         <div class="small">~ ${{ key(@foodPrice) }}
                         </div>
                     </h5>
-                    <img
-                            src="images/Food/{{ str_replace('/', '', str_replace(' ', '', strtolower(@foods))) }}.jpg"/>
+                    <img src="images/Food/{{ str_replace('/', '', str_replace
+                    (' ', '', strtolower(@foods))) }}.jpg"/>
 
                     <script src="//code.jquery.com/jquery.js"></script>
 
                     <script>
                         //qty selector
                         jQuery(document).ready(($) => {
-                            $('.quantity').on('click', '.plus', function(e) {
+                            $('.quantity').on('click', '.plus', function (e) {
                                 let $input = $(this).prev('input.qty');
                                 let val = parseInt($input.val());
-                                $input.val = ( val+1);
+                                $input.val = (val + 1);
                             });
-
                             $('.quantity').on('click', '.minus',
-                                function(e) {
+                                function (e) {
                                     let $input = $(this).next('input.qty');
                                     let val = parseInt($input.val());
                                     if (val > 0) {
-                                        $input.val = ( val-1 );
+                                        $input.val = (val - 1);
                                     }
                                 });
                         });
+
                         //display or hide qty
                         $(".food").click(function (event) {
-                            $(".food").css("display","none");
+                            $(".food").css("display", "none");
                             event.stopPropagation();
-                            if($(".quantity").css("display") == "none"){
-                                $(".quantity").css("display","block");
-                            }else{
-                                $(".quantity").css("display","none");
+                            if ($(".quantity").css("display") == "none") {
+                                $(".quantity").css("display", "block");
+                            } else {
+                                $(".quantity").css("display", "none");
                             }
                         });
                     </script>
-
                     <div id="myform" class="quantity">
-                    <input type='button' value='-' class='minus' field='quantity' />
-                    <input type='text' name='quantity' value='1' class='qty'
-                           />
-                    <input type='button' value='+' class='plus' field='quantity' />
+                        <input type='button' value='-' class='minus'
+                               field='quantity'/>
+                        <input type='text' name='quantity' value='1'
+                               class='qty'
+                        />
+                        <input type='button' value='+' class='plus'
+                               field='quantity'/>
                     </div>
-
                 </label>
             </li>
         </repeat>
@@ -99,10 +101,12 @@ order.html
                     </h5>
                     <img src="images/Drinks/{{ str_replace(' ', '', strtolower(@drink)) }}.jpg"/>
                     <div id="myform1" class="quantity1">
-                        <input type='button' value='-' class='minus' field='quantity' />
+                        <input type='button' value='-' class='minus'
+                               field='quantity'/>
                         <input type='text' name='quantity1' value='1'
-                               class='qty' />
-                        <input type='button' value='+' class='plus' field='quantity' />
+                               class='qty'/>
+                        <input type='button' value='+' class='plus'
+                               field='quantity'/>
                     </div>
                 </label>
             </li>
@@ -110,29 +114,29 @@ order.html
             <script>
                 //qty selector
                 jQuery(document).ready(($) => {
-                    $('.quantity').on('click', '.plus', function(e) {
+                    $('.quantity').on('click', '.plus', function (e) {
                         let $input = $(this).prev('input.qty');
                         let val = parseInt($input.val());
-                        $input.val = ( val+1);
+                        $input.val = (val + 1);
                     });
 
                     $('.quantity').on('click', '.minus',
-                        function(e) {
+                        function (e) {
                             let $input = $(this).next('input.qty');
                             let val = parseInt($input.val());
                             if (val > 0) {
-                                $input.val = ( val-1 );
+                                $input.val = (val - 1);
                             }
                         });
                 });
 
                 $(".drinks").click(function (event) {
-                    $(".drinks").css("display","none");
+                    $(".drinks").css("display", "none");
                     event.stopPropagation();
-                    if($(".quantity1").css("display") == "none"){
-                        $(".quantity1").css("display","block");
-                    }else{
-                        $(".quantity1").css("display","none");
+                    if ($(".quantity1").css("display") == "none") {
+                        $(".quantity1").css("display", "block");
+                    } else {
+                        $(".quantity1").css("display", "none");
                     }
                 });
             </script>

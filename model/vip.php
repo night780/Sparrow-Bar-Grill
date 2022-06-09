@@ -3,7 +3,8 @@
 /**
  *VIP extends member, represents a premium member (upgraded)
  */
-Class Vip extends Member {
+class Vip extends Member
+{
     /**
      * Reward points accumulate with each order
      * @var int|mixed|string
@@ -21,7 +22,7 @@ Class Vip extends Member {
      * VIP constructor
      * @param $points
      */
-    public function __construct($points='')
+    public function __construct($points = '')
     {
         $this->_points = $points;
     }
