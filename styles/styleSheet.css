@@ -46,12 +46,10 @@ body {
     color: darkred;
     display: none;
 }
-#ID{
+#ID, .sign{
     background: #004aad3b;
 }
-.form-control{
-    background: #004aad3b;
-}
+
 #Signup{
     padding-left: 30%;
     padding-right: 30%;'
