@@ -47,3 +47,26 @@ img {
 :checked + label {
     border: 3px solid #3f51b5c9;;
 }
+
+#myform {
+    text-align: center;
+    padding: 5px;
+    border: 1px dotted #ccc;
+    margin: 2%;
+}
+.qty {
+    width: 40px;
+    height: 25px;
+    text-align: center;
+}
+.plus,.minus { width:35px; height:35px;
+    border: none;
+    opacity: .85;
+    border-radius: 30px;
+
+}
+.quantity{
+    opacity: .85;
+    border-radius: 30px;
+
+}

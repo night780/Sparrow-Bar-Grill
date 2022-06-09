@@ -26,16 +26,46 @@ order.html
     <ul>
         <repeat group="{{ @food }}" value="{{ @foods }}">
             <li>
-                <input type="checkbox" name="food[]" value="{{ @foods }}" id="{{ @foods }}"/>
+                <input type="checkbox" name="food[]" value="{{ @foods }}"
+                       id="{{ @foods }}" class="food"/>
                 <label for="{{ @foods }}">
+
                     <h5>
                         {{ key(@food) }}
-                        <div class="small">~ ${{ @foods }}</div>
+                        <div class="small">~ ${{ @foods }}
+                        </div>
                     </h5>
                     <img src="images/Food/{{ str_replace('/', '', str_replace(' ', '', strtolower(key(@food)))) }}.jpg"/>
-                    <div class="d-block mt-3">
-                        <input class="form-control w-50 border-round text-center mx-auto" type="number" value="0">
+
+<!--                    <div class="d-block mt-3">-->
+<!--                        <input class="form-control w-50 border-round text-center mx-auto"-->
+<!--                               type="number" value="0">-->
+<!--                    </div>-->
+
+                    <script src="//code.jquery.com/jquery.js"></script>
+                    <script>
+                        jQuery(document).ready(($) => {
+                            $('.quantity').on('click', '.plus', function(e) {
+                                let $input = $(this).prev('input.qty');
+                                let val = parseInt($input.val());
+                                $input.val( val+0.1 );
+                            });
+                            $('.quantity').on('click', '.minus',
+                                function(e) {
+                                    var val;
+                                    if (val > 0) {
+                                        $val( val-1 );
+                                    }
+                                });
+                        });
+                    </script>
+
+                    <div id="myform" class="quantity">
+                    <input type='button' value='-' class='minus' field='quantity' />
+                    <input type='text' name='quantity' value='0' class='qty' />
+                    <input type='button' value='+' class='plus' field='quantity' />
                     </div>
+
                 </label>
             </li>
         </repeat>
@@ -48,7 +78,8 @@ order.html
     <ul>
         <repeat group="{{ @drinks }}" value="{{ @drink }}">
             <li>
-                <input type="checkbox" name="drinks[]" value="{{ @drink }}" id="{{ @drink }}"/>
+                <input type="checkbox" name="drinks[]" value="{{ @drink }}"
+                       id="{{ @drink }}"/>
 
                 <label for="{{ @drink }}">
                     <h5>
@@ -57,7 +88,8 @@ order.html
                     </h5>
                     <img src="images/Drinks/{{ str_replace(' ', '', strtolower(key(@drinks))) }}.jpg"/>
                     <div class="d-block mt-3">
-                        <input class="form-control w-50 border-round text-center mx-auto" type="number" value="0">
+                        <input class="form-control w-50 border-round text-center mx-auto"
+                               type="number" value="0">
                     </div>
                 </label>
             </li>
@@ -67,7 +99,9 @@ order.html
 
     <div class="text-right mt-4 mb-5">
         <!--submit-->
-        <button class="btn btn-lg" type="submit" id="PlaceOrderButton">Place Order</button>
+        <button class="btn btn-lg" type="submit" id="PlaceOrderButton">Place
+            Order
+        </button>
     </div>
 </form>
 
