@@ -54,3 +54,11 @@ body {
     padding-left: 30%;
     padding-right: 30%;'
 }
+.buttonVIP{
+    background: #004aad3b;
+    color: black;
+}
+.buttonVIPTable{
+    background: #004aada1;
+    color: black;
+}

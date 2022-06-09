@@ -76,7 +76,7 @@ class Controller
                 if (!empty($_POST['drinks'])) {
                     $drinks = implode(", ", $_POST['drinks']);
                     // Total cost
-                    $_SESSION['total'] = $_SESSION['total'] + 2;
+                    $_SESSION['total'] = ($_SESSION['total'] + 2);
                 }
             }
 
@@ -89,6 +89,7 @@ class Controller
             $foodValue = 0;
             $foodValue = $foodValue + 1;
             $_SESSION['foods'] = $_POST[('foods' . $foodValue)];
+
 
 
             $_SESSION['drinks'] = $drinks;
