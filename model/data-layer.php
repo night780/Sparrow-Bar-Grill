@@ -35,12 +35,12 @@ class DataLayer
 		return array("Chicken Tenders" => "8.00",
 			"Turkey Club" => "8.50",
 			"Fresh Salmon" => "12.00",
-			"Mega Philly Cheese Melt" => "8.00",
-			"1/3lb Cheeseburger" => "6.00",
+			"Mega Philly Cheese Melt" => "7.00",
+			"1/3lb Cheeseburger" => "6.50",
 			"Crazy Spicy Skillet" => "10.00",
 			"Sirloin Steak & Eggs" => "11.00",
 			"Supreme Skillet" => "13.50",
-			"Smothered Cheese Fries" => "8.50",
+			"Smothered Cheese Fries" => "8.25",
 			"Zesty Nachos" => "6.00",
 			"Sweet Tangy Bacon Burger" => "15.00"
 		);
@@ -52,14 +52,14 @@ class DataLayer
      * @return string[]
      */
     static function getDrinks() {
-		return array("Bud Light" => "2.00",
+		return array("Bud Light" => "2.50",
 			"Busch" => "2.00",
 			"Sam Adams" => "3.00",
 			"Corona" => "1.50",
-			"Mojito" => "5.00",
-			"Cosmopolitan" => "5.00",
+			"Mojito" => "5.50",
+			"Cosmopolitan" => "5.40",
 			"Negroni" => "5.00",
-			"Whiskey Sour" => "6.00"
+			"Whiskey Sour" => "6.40"
 		);
 	}
 }
