@@ -9,6 +9,12 @@ styleSheet.css
 
 <include href="views/includes/header.html"></include>
 <div class="text-center"><h1>Confirmation page</h1>
+    <div class="container">
+        <p>Thank you for ordering with Sparrow Bar & Grill!</p>
+        <h3 class="list-group-item-success rounded-pill" id="item-success">Order
+            Submitted</h3>
+    </div>
+    <br>
     <div class="p-2 border rounded-bottom">
         <span class="d-block">Food: {{ @SESSION.food }}</span>
         <span class="d-block">Drinks: {{ @SESSION.drinks }}</span>

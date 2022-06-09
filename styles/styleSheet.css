@@ -13,10 +13,9 @@ body {
     /*    This color is the exact color in the logo to match the page. Do not remove*/
 }
 
-.contactFormButton,#orderButton2,#click,#sign, NAV, #homeReviewButton, #PlaceOrderButton {
+.SignInButton,.contactFormButton,#orderButton2,#click,#sign, NAV, #homeReviewButton, #PlaceOrderButton {
     background-color: #52565bed;
     /*    This color is to match the page. Not the same color as secondary. Do not remove*/
-
 }
 
 #NAV, #Banner, #Footer {
@@ -50,7 +49,7 @@ body {
     background: #004aad3b;
 }
 
-#Signup{
+#Signup1{
     padding-left: 30%;
     padding-right: 30%;'
 }
@@ -61,4 +60,9 @@ body {
 .buttonVIPTable{
     background: #004aada1;
     color: black;
+}
+#item-success{
+    margin-left: 30%;
+    margin-right: 30%;
+    opacity: .65;
 }
