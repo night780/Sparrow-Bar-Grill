@@ -57,43 +57,59 @@ class Controller
     function order()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
+			// Getting the food seperated by a comma
             $food = "None";
-
             if (isset($_POST['food'])) {
                 if (!empty($_POST['food'])) {
                     $food = implode(", ", $_POST['food']);
-                    // Total cost
-                    $_SESSION['total'] = $_SESSION['total'] + 8;
                 }
             }
+
+			// Calculating to cost for the food
+			$totalArray = array();
+			$foodArray = explode(',', $food);
+			foreach ($foodArray as $foodItem) {
+				if ($foodItem[0] == " ") {
+					$foodItem = substr($foodItem, 1);
+				}
+				$totalArray[]=DataLayer::getFoodPrice($foodItem);
+			}
+			// Setting the food session variable
             $_SESSION['food'] = $food;
 
+			// Getting the drinks seperated by a comma
             $drinks = "None";
-
-
             if (isset($_POST['drinks'])) {
                 if (!empty($_POST['drinks'])) {
                     $drinks = implode(", ", $_POST['drinks']);
-                    // Total cost
-                    $_SESSION['total'] = ($_SESSION['total'] + 2);
                 }
             }
 
+			// Calculating to cost for the drinks
+			$drinkArray = explode(',', $drinks);
+			foreach ($drinkArray as $drinkItem) {
+				if ($drinkItem[0] == " ") {
+					$drinkItem = substr($drinkItem, 1);
+				}
+				$totalArray[]=DataLayer::getDrinkPrice($drinkItem);
+			}
 
-            // This is for the CSS in order. Increments ID (food1,food2,food3...)
-            $drinkValue = 0;
-            $drinkValue = $drinkValue + 1;
-            $_SESSION['drink'] = $_POST[('drink' . $drinkValue)];
+			// Total cost
+			$total = array_sum($totalArray);
+			$total = number_format($total, 2, ".", ",");
+			$_SESSION['total'] = $total;
 
-            $foodValue = 0;
-            $foodValue = $foodValue + 1;
-            $_SESSION['foods'] = $_POST[('foods' . $foodValue)];
-
-
+			// Setting session variables
             $_SESSION['drinks'] = $drinks;
             $_SESSION['CT'] = $_POST['CT'];
 
+			// This is for the CSS in order. Increments ID (food1,food2,food3...)
+			$drinkValue = 0;
+			$drinkValue = $drinkValue + 1;
+			$_SESSION['drink'] = $_POST[('drink' . $drinkValue)];
+			$foodValue = 0;
+			$foodValue = $foodValue + 1;
+			$_SESSION['foods'] = $_POST[('foods' . $foodValue)];
 
             if (empty($this->_f3->get('errors'))) {
                 var_dump($_SESSION);
@@ -102,10 +118,7 @@ class Controller
         }
 
         $this->_f3->set('food', DataLayer::getFood());
-        $this->_f3->set('foodPrice', DataLayer::getFoodPrices());
-
         $this->_f3->set('drinks', DataLayer::getDrinks());
-        $this->_f3->set('drinkPrice', DataLayer::getDrinkPrices());
 
         $view = new Template();
         echo $view->render('views/order.html');
@@ -120,7 +133,7 @@ class Controller
         var_dump($_SESSION);
         $view = new Template();
         echo $view->render('views/confirmation.html');
-        session_destroy();
+        // session_destroy();
     }
 
     /**

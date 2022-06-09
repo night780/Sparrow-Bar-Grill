@@ -25,58 +25,23 @@ order.html
     <h1 class="text-center mt-5">Entrees</h1>
     <ul>
 
-        <repeat group="{{ @food }}" value="{{ @foods }}" class="food">
+
+        <repeat group="{{ @food }}" key="{{ @name }}" value="{{ @price }}" class="food">
             <li>
-                <input type="checkbox" name="food[]" value="{{ @foods }}"
-                       id="{{ @foods }}" class="food"/>
-                <label for="{{ @foods }}">
+                <input type="checkbox" name="food[]" value="{{ @name }}"
+                       id="{{ @name }}" class="food"/>
+                <label for="{{ @name }}">
                     <h5>
-                        {{ @foods }}
-                        <div class="small">~ ${{ key(@foodPrice) }}
+                        {{ @name }}
+                        <div class="small">~ ${{ @price }}
                         </div>
                     </h5>
                     <img src="images/Food/{{ str_replace('/', '', str_replace
-                    (' ', '', strtolower(@foods))) }}.jpg"/>
+                    (' ', '', strtolower(@name))) }}.jpg"/>
 
-                    <script src="//code.jquery.com/jquery.js"></script>
-
-                    <script>
-                        //qty selector
-                        jQuery(document).ready(($) => {
-                            $('.quantity').on('click', '.plus', function (e) {
-                                let $input = $(this).prev('input.qty');
-                                let val = parseInt($input.val());
-                                $input.val = (val + 1);
-                            });
-                            $('.quantity').on('click', '.minus',
-                                function (e) {
-                                    let $input = $(this).next('input.qty');
-                                    let val = parseInt($input.val());
-                                    if (val > 0) {
-                                        $input.val = (val - 1);
-                                    }
-                                });
-                        });
-
-                        //display or hide qty
-                        $(".food").click(function (event) {
-                            $(".food").css("display", "none");
-                            event.stopPropagation();
-                            if ($(".quantity").css("display") == "none") {
-                                $(".quantity").css("display", "block");
-                            } else {
-                                $(".quantity").css("display", "none");
-                            }
-                        });
-                    </script>
-                    <div id="myform" class="quantity">
-                        <input type='button' value='-' class='minus'
-                               field='quantity'/>
-                        <input type='text' name='quantity' value='1'
-                               class='qty'
-                        />
-                        <input type='button' value='+' class='plus'
-                               field='quantity'/>
+                    <div class="form-outline m-2">
+                        <span>Quantity:</span>
+                        <input type="number" class="form-control" value="0"/>
                     </div>
                 </label>
             </li>
@@ -87,59 +52,24 @@ order.html
 
     <h1 class="text-center mt-5">Drinks</h1>
 
-
     <ul>
-        <repeat group="{{ @drinks }}" value="{{ @drink }}" class="drinks">
+        <repeat group="{{ @drinks }}" key="@drinkName" value="{{ @drinkPrice }}" class="drinks">
             <li>
-                <input type="checkbox" name="drinks[]" value="{{ @drink }}"
-                       id="{{ @drink }}" class="drinks"/>
+                <input type="checkbox" name="drinks[]" value="{{ @drinkName }}"
+                       id="{{ @drinkName }}" class="drinks"/>
 
-                <label for="{{ @drink }}">
+                <label for="{{ @drinkName }}">
                     <h5>
-                        {{ @drink }}
-                        <div class="small">~ ${{ key(@drinkPrice) }}</div>
+                        {{ @drinkName }}
+                        <div class="small">~ ${{ @drinkPrice }}</div>
                     </h5>
-                    <img src="images/Drinks/{{ str_replace(' ', '', strtolower(@drink)) }}.jpg"/>
-                    <div id="myform1" class="quantity1">
-                        <input type='button' value='-' class='minus'
-                               field='quantity'/>
-                        <input type='text' name='quantity1' value='1'
-                               class='qty'/>
-                        <input type='button' value='+' class='plus'
-                               field='quantity'/>
+                    <img src="images/Drinks/{{ str_replace(' ', '', strtolower(@drinkName)) }}.jpg"/>
+                    <div class="form-outline m-2">
+                        <span>Quantity:</span>
+                        <input type="number" class="form-control" value="0"/>
                     </div>
                 </label>
             </li>
-
-            <script>
-                //qty selector
-                jQuery(document).ready(($) => {
-                    $('.quantity').on('click', '.plus', function (e) {
-                        let $input = $(this).prev('input.qty');
-                        let val = parseInt($input.val());
-                        $input.val = (val + 1);
-                    });
-
-                    $('.quantity').on('click', '.minus',
-                        function (e) {
-                            let $input = $(this).next('input.qty');
-                            let val = parseInt($input.val());
-                            if (val > 0) {
-                                $input.val = (val - 1);
-                            }
-                        });
-                });
-
-                $(".drinks").click(function (event) {
-                    $(".drinks").css("display", "none");
-                    event.stopPropagation();
-                    if ($(".quantity1").css("display") == "none") {
-                        $(".quantity1").css("display", "block");
-                    } else {
-                        $(".quantity1").css("display", "none");
-                    }
-                });
-            </script>
         </repeat>
     </ul>
 
