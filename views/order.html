@@ -24,7 +24,7 @@ order.html
 <form class="container text-center" action="#" method="post" id="orderForm">
     <h1 class="text-center mt-5">Entrees</h1>
     <ul>
-        <repeat group="{{ @food }}" value="{{ @foods }}">
+        <repeat group="{{ @food }}" value="{{ @foods }}" class="food">
             <li>
                 <input type="checkbox" name="food[]" value="{{ @foods }}"
                        id="{{ @foods }}" class="food"/>
@@ -37,13 +37,10 @@ order.html
                     </h5>
                     <img src="images/Food/{{ str_replace('/', '', str_replace(' ', '', strtolower(key(@food)))) }}.jpg"/>
 
-<!--                    <div class="d-block mt-3">-->
-<!--                        <input class="form-control w-50 border-round text-center mx-auto"-->
-<!--                               type="number" value="0">-->
-<!--                    </div>-->
-
                     <script src="//code.jquery.com/jquery.js"></script>
+
                     <script>
+                        //qty selector
                         jQuery(document).ready(($) => {
                             $('.quantity').on('click', '.plus', function(e) {
                                 let $input = $(this).prev('input.qty');
@@ -57,6 +54,17 @@ order.html
                                         $val( val-1 );
                                     }
                                 });
+                        });
+                        //display or hide qty
+                        $(".food").click(function (event) {
+                            $(".food").css("display","none");
+                            event.stopPropagation();
+                            if($(".quantity").css("display") == "none"){
+                                $(".quantity").css("display","block");
+                            }else{
+
+                                $(".quantity").css("display","none");
+                            }
                         });
                     </script>
 
