@@ -51,7 +51,7 @@ $f3->route('GET|POST /VIP',function() {
  * Checks order status via order status page
  * @return void
  */
-$f3->route('GET|POST /order-status',function() {
+$f3->route('GET|POST /status',function() {
 	global $con;
 	$con->orderStatus();
 });
