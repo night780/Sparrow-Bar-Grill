@@ -13,7 +13,7 @@ body {
     /*    This color is the exact color in the logo to match the page. Do not remove*/
 }
 
-#orderButton2,#click, NAV, #homeReviewButton, #PlaceOrderButton {
+#orderButton2,#click,#sign, NAV, #homeReviewButton, #PlaceOrderButton {
     background-color: #52565bed;
     /*    This color is to match the page. Not the same color as secondary. Do not remove*/
 
@@ -49,4 +49,10 @@ body {
 #ID{
     background: #004aad3b;
 }
-
+.form-control{
+    background: #004aad3b;
+}
+#Signup{
+    padding-left: 30%;
+    padding-right: 30%;'
+}

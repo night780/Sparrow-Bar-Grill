@@ -9,7 +9,7 @@ li {
 input[type="checkbox"] {
     display: none;
 }
-.quantity{
+.quantity,.quantity1{
     display: none;
 }
 

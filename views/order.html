@@ -84,10 +84,10 @@ order.html
     <h1 class="text-center mt-5">Drinks</h1>
 
     <ul>
-        <repeat group="{{ @drinks }}" value="{{ @drink }}">
+        <repeat group="{{ @drinks }}" value="{{ @drink }}" class="drinks">
             <li>
                 <input type="checkbox" name="drinks[]" value="{{ @drink }}"
-                       id="{{ @drink }}"/>
+                       id="{{ @drink }}" class="drinks"/>
 
                 <label for="{{ @drink }}">
                     <h5>
@@ -95,13 +95,43 @@ order.html
                         <div class="small">~ ${{ @drink }}</div>
                     </h5>
                     <img src="images/Drinks/{{ str_replace(' ', '', strtolower(key(@drinks))) }}.jpg"/>
-                    <div class="d-block mt-3">
-                        <input class="form-control w-50 border-round text-center mx-auto"
-                               type="number" value="0">
+                    <div id="myform1" class="quantity1">
+                        <input type='button' value='-' class='minus' field='quantity' />
+                        <input type='text' name='quantity1' value='1'
+                               class='qty' />
+                        <input type='button' value='+' class='plus' field='quantity' />
                     </div>
                 </label>
             </li>
+            <script>
+                //qty selector
+                jQuery(document).ready(($) => {
+                    $('.quantity').on('click', '.plus', function(e) {
+                        let $input = $(this).prev('input.qty');
+                        let val = parseInt($input.val());
+                        $input.val = ( val+1);
+                    });
 
+                    $('.quantity').on('click', '.minus',
+                        function(e) {
+                            let $input = $(this).next('input.qty');
+                            let val = parseInt($input.val());
+                            if (val > 0) {
+                                $input.val = ( val-1 );
+                            }
+                        });
+                });
+
+                $(".drinks").click(function (event) {
+                    $(".drinks").css("display","none");
+                    event.stopPropagation();
+                    if($(".quantity1").css("display") == "none"){
+                        $(".quantity1").css("display","block");
+                    }else{
+                        $(".quantity1").css("display","none");
+                    }
+                });
+            </script>
         </repeat>
     </ul>
 
