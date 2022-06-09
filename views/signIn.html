@@ -15,4 +15,65 @@ signIn.html
     <p>Admin User login->AdminPage | VIP User login -> VIP | Standard user login -> home | Not user -> SignUp</p>
 </div>
 
+
+
+</head>
+<body>
+<div
+        id="jumbotronContainer"
+        class="d-flex align-items-center justify-content-center"
+>
+    <div class="card mt-4 bg-transparent">
+        <article class="card-body ">
+
+            <h4 class="card-title text-center mb-4 mt-1">Sign-In!</h4>
+
+            <form id="loginForm" action="adminTable.php" method="post">
+
+                <div class="form-group">
+
+                    <label>Your email</label>
+                    <input
+                            name="email"
+                            id="email"
+                            class="form-control"
+                            placeholder="Email"
+                            type="email"
+                    />
+                    <span id="emailErr" class="text-danger error"
+                    >That is the incorrect email</span
+                    >
+                </div>
+                <!-- form-group// -->
+                <div class="form-group">
+                    <label>Your password</label>
+                    <input
+                            id="password"
+                            class="form-control"
+                            placeholder="******"
+                            type="password"
+                    />
+                    <span id="passwordErr" class="text-danger error"
+                    >That is the incorrect password</span
+                    >
+                </div>
+                <!-- form-group// -->
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label> <input type="checkbox" /> Save password </label>
+                    </div>
+                    <!-- checkbox .// -->
+                </div>
+                <!-- form-group// -->
+                <div class="">
+                    <button type="submit" class="btn btn-primary btn-block">
+                        Login
+                    </button>
+                </div>
+                <!-- form-group// -->
+            </form>
+        </article>
+    </div>
+</div>
+
 <include href="views/includes/footer.html"></include>

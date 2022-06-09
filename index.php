@@ -9,8 +9,9 @@ session_start();
 
 // Require the autoload file
 require_once('vendor/autoload.php');
-//require_once($_SERVER['DOCUMENT_ROOT'] . '/../config.php');
-require_once('config.php');
+
+require_once($_SERVER['DOCUMENT_ROOT'] . '/../config.php');
+
 
 // Create instance of the base class
 $f3=Base::instance();
@@ -41,7 +42,7 @@ $f3->route('GET /home',function() {
  * VIP page routing
  * @return void
  */
-$f3->route('GET /VIP',function() {
+$f3->route('GET|POST /VIP',function() {
 	global $con;
 	$con->vip();
 });
@@ -50,7 +51,7 @@ $f3->route('GET /VIP',function() {
  * Checks order status via order status page
  * @return void
  */
-$f3->route('GET /order-status',function() {
+$f3->route('GET|POST /order-status',function() {
 	global $con;
 	$con->orderStatus();
 });
@@ -102,7 +103,7 @@ $f3->route('GET|POST /confirmation',function() use ($dbh) {
  * Contact form route
  * @return void
  */
-$f3->route('GET /contact',function() {
+$f3->route('GET|POST /contact',function() {
 	global $con;
 	$con->contact();
 });
@@ -111,7 +112,7 @@ $f3->route('GET /contact',function() {
  * Sign up form route
  * @return void
  */
-$f3->route('GET /Sign-up',function() {
+$f3->route('GET|POST /Sign-up',function() {
 	global $con;
 	$con->signUp();
 });
@@ -120,7 +121,7 @@ $f3->route('GET /Sign-up',function() {
  * Sign-in form route
  * @return void
  */
-$f3->route('GET /Sign-in',function() {
+$f3->route('GET|POST /Sign-in',function() {
 	global $con;
 	$con->signIn();
 });

@@ -9,6 +9,9 @@ li {
 input[type="checkbox"] {
     display: none;
 }
+.quantity{
+    display: none;
+}
 
 label {
     border-radius: 5%;

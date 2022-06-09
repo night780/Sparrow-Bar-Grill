@@ -29,7 +29,6 @@ order.html
                 <input type="checkbox" name="food[]" value="{{ @foods }}"
                        id="{{ @foods }}" class="food"/>
                 <label for="{{ @foods }}">
-
                     <h5>
                         {{ key(@food) }}
                         <div class="small">~ ${{ @foods }}
@@ -45,13 +44,15 @@ order.html
                             $('.quantity').on('click', '.plus', function(e) {
                                 let $input = $(this).prev('input.qty');
                                 let val = parseInt($input.val());
-                                $input.val( val+0.1 );
+                                $input.val = ( val+1);
                             });
+
                             $('.quantity').on('click', '.minus',
                                 function(e) {
-                                    var val;
+                                    let $input = $(this).next('input.qty');
+                                    let val = parseInt($input.val());
                                     if (val > 0) {
-                                        $val( val-1 );
+                                        $input.val = ( val-1 );
                                     }
                                 });
                         });
@@ -69,7 +70,7 @@ order.html
 
                     <div id="myform" class="quantity">
                     <input type='button' value='-' class='minus' field='quantity' />
-                    <input type='text' name='quantity' value='0' class='qty' />
+                    <input type='text' name='quantity' value='1' class='qty' />
                     <input type='button' value='+' class='plus' field='quantity' />
                     </div>
 

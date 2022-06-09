@@ -78,11 +78,11 @@ class Controller
             // This is for the CSS in order. Increments ID (food1,food2,food3...)
             $drinkValue = 0;
             $drinkValue = $drinkValue + 1;
-            $_SESSION['drink'] = $_POST[('drink' . $drinkValue . $drinkValue)];
+            $_SESSION['drink'] = $_POST[('drink' . $drinkValue)];
 
             $foodValue = 0;
             $foodValue = $foodValue + 1;
-            $_SESSION['foods'] = $_POST[('foods' . $drinkValue . $foodValue)];
+            $_SESSION['foods'] = $_POST[('foods' . $foodValue)];
 
 
             $_SESSION['drinks'] = $drinks;
