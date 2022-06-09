@@ -30,11 +30,12 @@ order.html
                        id="{{ @foods }}" class="food"/>
                 <label for="{{ @foods }}">
                     <h5>
-                        {{ key(@food) }}
-                        <div class="small">~ ${{ @foods }}
+                        {{ @foods }}
+                        <div class="small">~ ${{ key(@foodPrice) }}
                         </div>
                     </h5>
-                    <img src="images/Food/{{ str_replace('/', '', str_replace(' ', '', strtolower(key(@food)))) }}.jpg"/>
+                    <img
+                            src="images/Food/{{ str_replace('/', '', str_replace(' ', '', strtolower(@foods))) }}.jpg"/>
 
                     <script src="//code.jquery.com/jquery.js"></script>
 
@@ -83,6 +84,7 @@ order.html
 
     <h1 class="text-center mt-5">Drinks</h1>
 
+
     <ul>
         <repeat group="{{ @drinks }}" value="{{ @drink }}" class="drinks">
             <li>
@@ -91,10 +93,10 @@ order.html
 
                 <label for="{{ @drink }}">
                     <h5>
-                        {{ key(@drinks) }}
-                        <div class="small">~ ${{ @drink }}</div>
+                        {{ @drink }}
+                        <div class="small">~ ${{ key(@drinkPrice) }}</div>
                     </h5>
-                    <img src="images/Drinks/{{ str_replace(' ', '', strtolower(key(@drinks))) }}.jpg"/>
+                    <img src="images/Drinks/{{ str_replace(' ', '', strtolower(@drink)) }}.jpg"/>
                     <div id="myform1" class="quantity1">
                         <input type='button' value='-' class='minus' field='quantity' />
                         <input type='text' name='quantity1' value='1'
@@ -103,6 +105,7 @@ order.html
                     </div>
                 </label>
             </li>
+
             <script>
                 //qty selector
                 jQuery(document).ready(($) => {

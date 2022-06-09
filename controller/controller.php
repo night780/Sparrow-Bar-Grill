@@ -63,17 +63,23 @@ class Controller
             if (isset($_POST['food'])) {
                 if (!empty($_POST['food'])) {
                     $food = implode(", ", $_POST['food']);
+                    // Total cost
+                    $_SESSION['total'] = $_SESSION['total'] + 8;
                 }
             }
             $_SESSION['food'] = $food;
 
             $drinks = "None";
 
+
             if (isset($_POST['drinks'])) {
                 if (!empty($_POST['drinks'])) {
                     $drinks = implode(", ", $_POST['drinks']);
+                    // Total cost
+                    $_SESSION['total'] = $_SESSION['total'] + 2;
                 }
             }
+
 
             // This is for the CSS in order. Increments ID (food1,food2,food3...)
             $drinkValue = 0;
@@ -88,8 +94,7 @@ class Controller
             $_SESSION['drinks'] = $drinks;
             $_SESSION['CT'] = $_POST['CT'];
 
-			// Total cost
-			$_SESSION['total'] = 10.00;
+
 
             if (empty($this->_f3->get('errors'))) {
 				var_dump($_SESSION);
@@ -98,7 +103,10 @@ class Controller
         }
 
         $this->_f3->set('food', DataLayer::getFood());
+        $this->_f3->set('foodPrice', DataLayer::getFoodPrices());
+
         $this->_f3->set('drinks', DataLayer::getDrinks());
+        $this->_f3->set('drinkPrice', DataLayer::getDrinkPrices());
 
         $view = new Template();
         echo $view->render('views/order.html');
