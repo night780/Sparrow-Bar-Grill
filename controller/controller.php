@@ -36,7 +36,7 @@ class Controller
      */
     function vip()
     {
-        $view = new Template();
+		$view = new Template();
         echo $view->render('views/vip.html');
     }
 
