@@ -80,7 +80,7 @@ $f3->route('GET|POST /confirmation', function () use ($dbh) {
     $statement = $dbh->prepare($sql);
 
     //3. bind parameters
-    var_dump($_POST);
+    //var_dump($_POST);
 
     $accountNum = 1234;
     $food = $_SESSION['food'];
@@ -112,10 +112,52 @@ $f3->route('GET|POST /contact', function () {
  * Sign up form route
  * @return void
  */
-$f3->route('GET|POST /Sign-up', function () {
+$f3->route('GET|POST /Sign-up', function () use ($dbh) {
+	//1. define a query
+	$sql = "INSERT INTO members (fname, lname, email, pass, isVIP) 
+			VALUES (:fname, :lname,:email,:pass, :isVIP)";
+
+	//2. prepare a statement ($dbh is in config.php so cannot see in editor)
+	$statement = $dbh->prepare($sql);
+
+	//3. bind parameters
+	// var_dump($_SESSION);
+	$accountNum = 1234;
+	$fname = $_SESSION['fname'];
+	$lname = $_SESSION['lname'];
+	$email = $_SESSION['email'];
+	$pass = $_SESSION['pass'];
+
+	if ($_SESSION['isVIP'] == "on") {
+		$isVIP = "1";
+	} else {
+		$isVIP = "0";
+	}
+
+	$statement->bindParam(':fname', $fname, PDO::PARAM_STR);
+	$statement->bindParam(':lname', $lname, PDO::PARAM_STR);
+	$statement->bindParam(':email', $email, PDO::PARAM_STR);
+	$statement->bindParam(':pass', $pass, PDO::PARAM_STR);
+	$statement->bindParam(':isVIP', $isVIP, PDO::PARAM_STR);
+
+	//4. execute
+	$statement->execute();
+
     global $con;
     $con->signUp();
 });
+
+/*
+ * CREATE TABLE members (
+	memberNum int AUTO_INCREMENT,
+    fname VARCHAR(30) NOT NULL,
+    lname VARCHAR(30) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    pass VARCHAR(50) NOT NULL,
+    isVIP boolean,
+    PRIMARY KEY (memberNum)
+);
+ */
 
 /**
  * Sign-in form route

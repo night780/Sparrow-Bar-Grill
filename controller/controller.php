@@ -112,7 +112,7 @@ class Controller
 			$_SESSION['foods'] = $_POST[('foods' . $foodValue)];
 
             if (empty($this->_f3->get('errors'))) {
-                var_dump($_SESSION);
+                // var_dump($_SESSION);
                 header('location: confirmation');
             }
         }
@@ -130,10 +130,10 @@ class Controller
      */
     function confirmation()
     {
-        var_dump($_SESSION);
+        // var_dump($_SESSION);
         $view = new Template();
         echo $view->render('views/confirmation.html');
-        // session_destroy();
+        session_destroy();
     }
 
     /**
@@ -152,6 +152,12 @@ class Controller
      */
     function signUp()
     {
+		$_SESSION['fname'] = $_POST['fname'];
+		$_SESSION['lname'] = $_POST['lname'];
+		$_SESSION['email'] = $_POST['email'];
+		$_SESSION['pass'] = $_POST['pass'];
+		$_SESSION['isVIP'] = $_POST['isVIP'];
+
         $view = new Template();
         echo $view->render('views/signUp.html');
     }
