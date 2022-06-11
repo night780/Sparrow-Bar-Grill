@@ -100,7 +100,8 @@ class Controller
                 }
             }
 
-            if (Validation::validDrinkPrice() or Validation::validFoodPrice()) {
+            if (Validation::validDrinkPrice($drinks) or
+                Validation::validFoodPrice($food)) {
                 // Total cost
                 $total = array_sum($totalArray);
                 $total = number_format($total, 2, ".", ",");

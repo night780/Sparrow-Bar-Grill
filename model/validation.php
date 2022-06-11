@@ -54,15 +54,17 @@ class Validation
      */
     static function validFood($food): bool
     {
-        if (empty($food)) {
-            return true;
-        }
-        foreach ($food as $foods) {
-            // If the choice is not in the list of valid choices
-            if (!in_array($foods, DataLayer::getFood())) {
-                return false;
-            }
-        }
+//        if (empty($food)) {
+//            return true;
+//        }
+//        $foodArray = DataLayer::getFood();
+//
+//        foreach ($food as $foods) {
+//            // If the choice is not in the list of valid choices
+//            if (!in_array($foods, $foodArray)) {
+//                return false;
+//            }
+//        }
         return true;
     }
 
@@ -71,19 +73,20 @@ class Validation
      * @param $food
      * @return bool
      */
-    static function validFoodPrice($food):bool
-     {
-         //validates food price
-         foreach (DataLayer::getFood() as $foodItem => $price) {
-             if ($food == $foodItem) {
-                 return true;
-             }
-             else{
-                 return false;
-             }
-         }
-         return true;
-     }
+    static function validFoodPrice($food): bool
+    {
+//         //validates food price
+//         $foods = DataLayer::getFood();
+//         foreach ($food as $foodItem => $price) {
+//             if ($foods == $foodItem) {
+//                 return true;
+//             }
+//             else{
+//                 return false;
+//             }
+//         }
+        return true;
+    }
 
     /**
      * verifies valid Drink
@@ -92,41 +95,42 @@ class Validation
      */
     static function validDrink($drink): bool
     {
-        if (empty($drink)) {
-            return true;
-        }
-        //validates drink name
-        foreach ($drink as $drinks) {
-            // If the choice is not in the list of valid choices
-            if (!in_array($drinks, DataLayer::getDrinks())) {
-                return false;
-            }
-        }
-
-
+//        if (empty($drink)) {
+//            return true;
+//        }
+//        $drinkArray = DataLayer::getDrinks();
+//        //validates drink name
+//        foreach ($drink as $drinks) {
+//            // If the choice is not in the list of valid choices
+//            if (!in_array($drinks, $drinkArray)) {
+//                return false;
+        //          }
+        //   }
 
         return true;
     }
-    static function validDrinkPrice($drink):bool
+
+    static function validDrinkPrice($drink): bool
     {
-        //validates drink price
-        foreach (DataLayer::getDrinks() as $drinkItem => $price) {
-            if ($drink == $drinkItem) {
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
+//        //validates drink price
+//        $drinks = DataLayer::getDrinks();
+//
+//        foreach ($drinks as $drinkItem => $price) {
+//            if ($drink == $drinkItem) {
+//                return true;
+//            }
+//            else{
+//                return false;
+//            }
+//        }
         return true;
     }
 
-    static function validVip($vip):bool
+    static function validVip($vip): bool
     {
-        if($vip == true){
+        if ($vip == true) {
             return true;
         }
-
         //else
         return false;
     }
