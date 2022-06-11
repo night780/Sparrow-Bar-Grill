@@ -20,11 +20,28 @@ status.html
 <br>
 <div class="text-center">
     <label><b>Enter an Order ID:</b>
-        <input type="text" id="ID" class="rounded ">
     </label>
-    <button id="click" class="rounded-pill">Get Order Status</button>
+    <form type="POST">
+        <input type="text" id="ID" class="rounded ">
+        <button id="click" class="rounded-pill">Get Order Status</button>
+    </form>
     <div id="output">
     </div>
 </div>
+<?php
+$number = $_POST['number'];
+//1. define a query
+$sql = "SELECT `orderNum`, `food`, `drinks`, `total` FROM `orders` WHERE orderNum = :number ";
+
+//2. prepare a statement ($dbh is in config.php so cannot see in editor)
+$statement = $dbh->prepare($sql);
+
+//3. bind parameters
+$statement->bindParam(':number', $number, PDO::PARAM_INT);
+
+//4. execute
+$statement->execute();
+
+?>
 
 <include href="views/includes/footer.html"></include>

@@ -47,7 +47,7 @@ class Controller
     function orderStatus()
     {
         $view = new Template();
-        echo $view->render('views/status.html');
+        echo $view->render('views/status.php');
     }
 
     /**
