@@ -120,4 +120,14 @@ class Validation
         }
         return true;
     }
+
+    static function validVip($vip):bool
+    {
+        if($vip == true){
+            return true;
+        }
+
+        //else
+        return false;
+    }
 }

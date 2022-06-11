@@ -36,7 +36,7 @@ class Controller
      */
     function vip()
     {
-		$view = new Template();
+        $view = new Template();
         echo $view->render('views/vip.html');
     }
 
@@ -57,27 +57,30 @@ class Controller
     function order()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			// Getting the food seperated by a comma
+
+
+            // Getting the food seperated by a comma
             $food = "None";
             if (isset($_POST['food'])) {
                 if (!empty($_POST['food'])) {
                     $food = implode(", ", $_POST['food']);
                 }
             }
+            if (Validation::validFood($food)) {
+                // Calculating to cost for the food
+                $totalArray = array();
+                $foodArray = explode(',', $food);
+                foreach ($foodArray as $foodItem) {
+                    if ($foodItem[0] == " ") {
+                        $foodItem = substr($foodItem, 1);
+                    }
+                    $totalArray[] = DataLayer::getFoodPrice($foodItem);
+                }
+                // Setting the food session variable
+                $_SESSION['food'] = $food;
+            }
 
-			// Calculating to cost for the food
-			$totalArray = array();
-			$foodArray = explode(',', $food);
-			foreach ($foodArray as $foodItem) {
-				if ($foodItem[0] == " ") {
-					$foodItem = substr($foodItem, 1);
-				}
-				$totalArray[]=DataLayer::getFoodPrice($foodItem);
-			}
-			// Setting the food session variable
-            $_SESSION['food'] = $food;
-
-			// Getting the drinks seperated by a comma
+            // Getting the drinks seperated by a comma
             $drinks = "None";
             if (isset($_POST['drinks'])) {
                 if (!empty($_POST['drinks'])) {
@@ -85,31 +88,34 @@ class Controller
                 }
             }
 
-			// Calculating to cost for the drinks
-			$drinkArray = explode(',', $drinks);
-			foreach ($drinkArray as $drinkItem) {
-				if ($drinkItem[0] == " ") {
-					$drinkItem = substr($drinkItem, 1);
-				}
-				$totalArray[]=DataLayer::getDrinkPrice($drinkItem);
-			}
+            if (Validation::validFood($drinks)) {
+                // Calculating to cost for the drinks
+                $drinkArray = explode(',', $drinks);
+                foreach ($drinkArray as $drinkItem) {
+                    if ($drinkItem[0] == " ") {
+                        $drinkItem = substr($drinkItem, 1);
+                    }
+                    $totalArray[] = DataLayer::getDrinkPrice($drinkItem);
+                    $_SESSION['drinks'] = $drinks;
+                }
+            }
 
-			// Total cost
-			$total = array_sum($totalArray);
-			$total = number_format($total, 2, ".", ",");
-			$_SESSION['total'] = $total;
-
-			// Setting session variables
-            $_SESSION['drinks'] = $drinks;
+            if (Validation::validDrinkPrice() or Validation::validFoodPrice()) {
+                // Total cost
+                $total = array_sum($totalArray);
+                $total = number_format($total, 2, ".", ",");
+                $_SESSION['total'] = $total;
+            }
+            // Setting session variables
             $_SESSION['CT'] = $_POST['CT'];
 
-			// This is for the CSS in order. Increments ID (food1,food2,food3...)
-			$drinkValue = 0;
-			$drinkValue = $drinkValue + 1;
-			$_SESSION['drink'] = $_POST[('drink' . $drinkValue)];
-			$foodValue = 0;
-			$foodValue = $foodValue + 1;
-			$_SESSION['foods'] = $_POST[('foods' . $foodValue)];
+            // This is for the CSS in order. Increments ID (food1,food2,food3...)
+            $drinkValue = 0;
+            $drinkValue = $drinkValue + 1;
+            $_SESSION['drink'] = $_POST[('drink' . $drinkValue)];
+            $foodValue = 0;
+            $foodValue = $foodValue + 1;
+            $_SESSION['foods'] = $_POST[('foods' . $foodValue)];
 
             if (empty($this->_f3->get('errors'))) {
                 // var_dump($_SESSION);
@@ -152,12 +158,26 @@ class Controller
      */
     function signUp()
     {
-		$_SESSION['fname'] = $_POST['fname'];
-		$_SESSION['lname'] = $_POST['lname'];
-		$_SESSION['email'] = $_POST['email'];
-		$_SESSION['pass'] = $_POST['pass'];
-		$_SESSION['isVIP'] = $_POST['isVIP'];
+        $_SESSION['pass'] = $_POST['pass'];
 
+        $fname = $_POST['fname'];
+        $lname = $_POST['lname'];
+        $email = $_POST['email'];
+        $vip = $_POST['isVIP'];
+
+        if (Validation::validname($fname)) {
+            $_SESSION['fname'] = $_POST['fname'];
+        }
+        if (Validation::validname($lname)) {
+            $_SESSION['lname'] = $_POST['lname'];
+        }
+        if(Validation::validEmail($email)){
+            $_SESSION['email'] = $_POST['email'];
+        }
+        if(Validation::validVip($vip)){
+            $_SESSION['isVIP'] = $_POST['isVIP'];
+
+        }
         $view = new Template();
         echo $view->render('views/signUp.html');
     }
