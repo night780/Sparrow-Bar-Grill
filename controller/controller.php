@@ -54,7 +54,7 @@ class Controller
      * order page routing
      * @return void
      */
-    function order()
+    function order($f3)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -78,6 +78,9 @@ class Controller
                 }
                 // Setting the food session variable
                 $_SESSION['food'] = $food;
+            }else {
+                //if data is not valid store an error message
+                $f3->set('errors["food"]', 'Please enter a valid food');
             }
 
             // Getting the drinks seperated by a comma
@@ -98,6 +101,9 @@ class Controller
                     $totalArray[] = DataLayer::getDrinkPrice($drinkItem);
                     $_SESSION['drinks'] = $drinks;
                 }
+            }else {
+                //if data is not valid store an error message
+                $f3->set('errors["drinks"]', 'Please enter a valid drink');
             }
 
             if (Validation::validDrinkPrice($drinks) or
@@ -106,6 +112,9 @@ class Controller
                 $total = array_sum($totalArray);
                 $total = number_format($total, 2, ".", ",");
                 $_SESSION['total'] = $total;
+            }else {
+                //if data is not valid store an error message
+                $f3->set('errors["price"]', 'Please do not edit the prices');
             }
             // Setting session variables
             $_SESSION['CT'] = $_POST['CT'];
@@ -168,16 +177,28 @@ class Controller
 
         if (Validation::validname($fname)) {
             $_SESSION['fname'] = $_POST['fname'];
+        }else {
+            //if data is not valid store an error message
+            $f3->set('errors["fname"]', 'Please enter a valid name');
         }
         if (Validation::validname($lname)) {
             $_SESSION['lname'] = $_POST['lname'];
+        }else {
+            //if data is not valid store an error message
+            $f3->set('errors["lname"]', 'Please enter a valid name');
         }
         if(Validation::validEmail($email)){
             $_SESSION['email'] = $_POST['email'];
+        }else {
+            //if data is not valid store an error message
+            $f3->set('errors["email"]', 'Please enter a valid email');
         }
         if(Validation::validVip($vip)){
             $_SESSION['isVIP'] = $_POST['isVIP'];
 
+        }else {
+            //if data is not valid store an error message
+            $f3->set('errors["vip"]', 'Not valid VIP status');
         }
         $view = new Template();
         echo $view->render('views/signUp.html');
