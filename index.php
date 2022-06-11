@@ -163,9 +163,9 @@ $f3->route('GET|POST /Sign-up', function () use ($dbh, $f3) {
  * Sign-in form route
  * @return void
  */
-$f3->route('GET|POST /Sign-in', function () {
+$f3->route('GET|POST /Sign-in', function ($f3) {
     global $con;
-    $con->signIn();
+    $con->signIn($f3);
 });
 
 /**
