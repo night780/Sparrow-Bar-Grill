@@ -166,7 +166,7 @@ class Controller
      * Signup page routing
      * @return void
      */
-    function signUp()
+    function signUp($f3)
     {
         $_SESSION['pass'] = $_POST['pass'];
 
@@ -208,7 +208,7 @@ class Controller
      * Sign in Page routing
      * @return void
      */
-    function signIn()
+    function signIn($f3)
     {
         $view = new Template();
         echo $view->render('views/signIn.html');

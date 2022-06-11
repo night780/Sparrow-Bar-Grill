@@ -64,7 +64,7 @@ $f3->route('GET|POST /status', function () {
 $f3->route('GET|POST /Order', function ($f3) {
 
     global $con;
-    $con->order();
+    $con->order($f3);
 });
 
 /**
@@ -112,7 +112,7 @@ $f3->route('GET|POST /contact', function () {
  * Sign up form route
  * @return void
  */
-$f3->route('GET|POST /Sign-up', function () use ($dbh) {
+$f3->route('GET|POST /Sign-up', function () use ($dbh, $f3) {
 	//1. define a query
 	$sql = "INSERT INTO members (fname, lname, email, pass, isVIP) 
 			VALUES (:fname, :lname,:email,:pass, :isVIP)";
@@ -144,7 +144,7 @@ $f3->route('GET|POST /Sign-up', function () use ($dbh) {
 	$statement->execute();
 
     global $con;
-    $con->signUp();
+    $con->signUp($f3);
 });
 
 /*

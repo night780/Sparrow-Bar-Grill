@@ -31,6 +31,11 @@ SignUp.html
                                         placeholder="First Name"
                                         required="required">
                 </div>
+                <!--        Display error if true-->
+                <check if="{{ isset(@errors['fname']) }}">
+<!--                    <span class="err text-danger">{{ @errors['fname']}}</span>-->
+                    <br>
+                </check>
 
                 <div class="col">
                     <input type="text"
@@ -39,6 +44,11 @@ SignUp.html
                                         placeholder="Last Name"
                                         required="required">
                 </div>
+                <!--        Display error if true-->
+                <check if="{{ isset(@errors['lname']) }}">
+<!--                    <span class="err text-danger">{{ @errors['lname']}}</span>-->
+                    <br>
+                </check>
             </div>
         </div>
 
@@ -46,6 +56,11 @@ SignUp.html
             <input type="email" class="sign form-control" name="email"
                    placeholder="Email" required="required">
         </div>
+        <!--        Display error if true-->
+        <check if="{{ isset(@errors['email']) }}">
+<!--            <span class="err text-danger">{{ @errors['email']}}</span>-->
+            <br>
+        </check>
 
         <div class="form-group m-3">
             <input type="password" class="sign form-control" name="pass"
@@ -79,7 +94,7 @@ SignUp.html
             </button>
         </div>
     </form>
-    <div class="hint-text">Already have an account? <a href="#">Login here</a>
+    <div class="hint-text">Already have an account? <a href="Sign-in">Login here</a>
     </div>
 </div>
 
