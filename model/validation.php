@@ -63,6 +63,15 @@ class Validation
                 return false;
             }
         }
+        //validates food price
+        foreach (DataLayer::getFood() as $foodItem => $price) {
+            if ($food == $foodItem) {
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
         return true;
     }    /**
      * verifies valid Drink
@@ -74,12 +83,24 @@ class Validation
         if (empty($drink)) {
             return true;
         }
+        //validates drink name
         foreach ($drink as $drinks) {
             // If the choice is not in the list of valid choices
             if (!in_array($drinks, DataLayer::getDrinks())) {
                 return false;
             }
         }
+
+        //validates drink price
+        foreach (DataLayer::getDrinks() as $drinkItem => $price) {
+            if ($drink == $drinkItem) {
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
         return true;
     }
 }
