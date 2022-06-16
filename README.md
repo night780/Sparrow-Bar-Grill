@@ -24,3 +24,13 @@ This is a OOP group project for SDEV 328, Spring 2022
 <br>
 <b>Disclaimer:</b> Sparrow Bar & Grill is not a real business, no goods listed
 for sale are available for purchase. Demo purposes only.
+
+
+**Class Diagram:**
+
+![Sparrow Class 2](https://user-images.githubusercontent.com/96319709/174126634-5c2902d4-1484-4a70-83aa-427f6c916872.png)
+
+
+**ER Diagram:**
+
+![ER Diagram](https://user-images.githubusercontent.com/96319709/174126670-717dab53-a2b7-48c0-ab05-d782d99ac901.png)
