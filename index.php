@@ -36,6 +36,7 @@ $f3->route('GET /home', function () {
  * @return void
  */
 $f3->route('GET|POST /Account', function () use ($dbh, $f3) {
+	// Getting all previous orders by registered user
 	if (isset($_SESSION['member'])) {
 		$sql="SELECT * FROM orders WHERE memberNum =".$_SESSION['member']->getMemberNum();
 		$statement=$dbh->prepare($sql);
@@ -43,8 +44,18 @@ $f3->route('GET|POST /Account', function () use ($dbh, $f3) {
 		$result=$statement->fetchAll();
 		$f3->set('result',$result);
 	}
+
 	global $con;
 	$con->account();
+});
+
+/**
+ * Checks order status via order status page
+ * @return void
+ */
+$f3->route('GET|POST /status', function () {
+    global $con;
+    $con->orderStatus();
 });
 
 /**
@@ -71,30 +82,29 @@ $f3->route('GET|POST /Order', function ($f3) {
  * @return void
  */
 $f3->route('GET|POST /confirmation', function () use ($dbh) {
-    if (isset($_SESSION['order'])) {
-        //1. define a query
-        $sql = "INSERT INTO orders (food, drinks, total, memberNum, date) 
+	// Sending order to database
+    //1. define a query
+    $sql = "INSERT INTO orders (food, drinks, total, memberNum, date) 
 		VALUES (:food,:drinks,:total, :memberNum, :date)";
 
-        //2. prepare a statement ($dbh is in config.php so cannot see in editor)
-        $statement = $dbh->prepare($sql);
+    //2. prepare a statement ($dbh is in config.php so cannot see in editor)
+    $statement = $dbh->prepare($sql);
 
-        //3. bind parameters
-        $food = $_SESSION['order']->getFood();
-        $drinks = $_SESSION['order']->getDrinks();
-        $total = $_SESSION['order']->getTotal();
-        $memberNum = $_SESSION['order']->getMemberNum();
-        $date = date("m.d.y");
+    //3. bind parameters
+    $food = $_SESSION['order']->getFood();
+    $drinks = $_SESSION['order']->getDrinks();
+    $total = $_SESSION['order']->getTotal();
+	$memberNum = $_SESSION['order']->getMemberNum();
+	$date = date('M.d.Y');
 
-        $statement->bindParam(':food', $food, PDO::PARAM_STR);
-        $statement->bindParam(':drinks', $drinks, PDO::PARAM_STR);
-        $statement->bindParam(':total', $total, PDO::PARAM_STR);
-        $statement->bindParam(':memberNum', $memberNum, PDO::PARAM_STR);
-        $statement->bindParam(':date', $date, PDO::PARAM_STR);
+    $statement->bindParam(':food', $food, PDO::PARAM_STR);
+    $statement->bindParam(':drinks', $drinks, PDO::PARAM_STR);
+    $statement->bindParam(':total', $total, PDO::PARAM_STR);
+	$statement->bindParam(':memberNum', $memberNum, PDO::PARAM_STR);
+	$statement->bindParam(':date', $date, PDO::PARAM_STR);
 
-        //4. execute
-        $statement->execute();
-    }
+    //4. execute
+    $statement->execute();
 
     global $con;
     $con->confirmation();
@@ -114,12 +124,6 @@ $f3->route('GET|POST /contact', function () {
  * @return void
  */
 $f3->route('GET|POST /Sign-up', function () use ($dbh, $f3) {
-    $sql="SELECT * FROM orders";
-    $statement=$dbh->prepare($sql);
-    $statement->execute();
-    $result=$statement->fetchAll();
-    $f3->set('result', $result);
-
 	global $con;
     $con->signUp($f3);
 });
@@ -128,6 +132,7 @@ $f3->route('GET|POST /Sign-up', function () use ($dbh, $f3) {
  * Confirms the sign up
  */
 $f3->route('GET|POST /signUpConfirm', function () use ($dbh, $f3) {
+	// Sending new registration to database
 	//1. define a query
 	$sql = "INSERT INTO members (fname, lname, email, pass, isVIP) 
 			VALUES (:fname, :lname, :email, :pass, :isVIP)";
@@ -155,11 +160,14 @@ $f3->route('GET|POST /signUpConfirm', function () use ($dbh, $f3) {
 
 	$statement->execute();
 
+	// Getting the member number that is auto incremented in the database
+	// and putting it in session member object to be used to place an order
 	$sql = "SELECT * FROM members";
 	$statement = $dbh->prepare($sql);
 	$statement->execute();
 	$result = $statement->fetchAll();
 
+	// Finding the same email as the new registered member in database
 	for ($i = 0; $i < count($result); $i++) {
 		if ($_SESSION['member']->getEmail() == $result[$i]['email']) {
 			$memberNum = $result[$i]['memberNum'];
@@ -176,6 +184,7 @@ $f3->route('GET|POST /signUpConfirm', function () use ($dbh, $f3) {
  * @return void
  */
 $f3->route('GET|POST /Sign-in', function () use ($dbh, $f3) {
+	// Signing in to account
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$sql = "SELECT * FROM members";
 		$statement = $dbh->prepare($sql);
@@ -183,8 +192,10 @@ $f3->route('GET|POST /Sign-in', function () use ($dbh, $f3) {
 		$result = $statement->fetchAll();
 		$found = false;
 
+		// Looking for the unique email in database
 		for ($i = 0; $i < count($result); $i++) {
-			if ($_POST['email'] == $result[$i]['email']) {
+			if ($_POST['email'] == $result[$i]['email'] && $_POST['password'] ==
+				$result[$i]['pass']) {
 				if ($result[$i]['isVIP'] == 1) {
 					$member = new VIPMember(0);
 					$member->setFname($result[$i]['fname']);
@@ -193,8 +204,8 @@ $f3->route('GET|POST /Sign-in', function () use ($dbh, $f3) {
 					$member->setMemberNum($result[$i]['memberNum']);
 					$_SESSION['member'] = $member;
 				} else {
-					$member = new RestMember($result[$i]['fname'],
-						$result[$i]['lname'], $result[$i]['email'], $result[$i]['password']);
+					$member = new RestMember($result[$i]['fname'], $result[$i]['lname'],
+						$result[$i]['email'], $result[$i]['password']);
 					$member->setMemberNum($result[$i]['memberNum']);
 					$_SESSION['member'] = $member;
 				}
@@ -202,9 +213,12 @@ $f3->route('GET|POST /Sign-in', function () use ($dbh, $f3) {
 			}
 		}
 
+		// Display error
 		if ($found == false) {
 			$f3->set('errors["login"]', 'Please enter valid login information');
 		}
+
+		// If email and password was found in the database
 		if ($found == true) {
 			header('location: home');
 		}

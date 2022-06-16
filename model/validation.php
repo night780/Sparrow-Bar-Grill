@@ -10,22 +10,19 @@ class Validation
      * @param $name
      * @return bool
      */
-    static function validname($name): bool
+    static function validName($name): bool
     {
         //True if both names are valid (over 2 char) false if not
         return (strlen($name) >= 2) and $name != NULL and (ctype_alpha($name));
     }
 
-    /**
-     * verifies valid age we are a bar 21+ only
-     * @param $Age
-     * @return bool
-     */
-    static function validAge($Age): bool
-    {
-        return is_numeric($Age) and $Age <= 118 and $Age >= 21 and $Age !=
-            NULL;
-    }
+	/**
+	 * @param $password
+	 * @return bool
+	 */
+	static function validPassword($password) {
+		return (strlen($password) >= 2) and $password != NULL;
+	}
 
     /**
      * verifies valid email
@@ -44,18 +41,17 @@ class Validation
      */
     static function validFood($food): bool
     {
-        if (empty($food)) {
-            return true;
-        }
-
-        // Loops through the user choices
-        foreach ($food as $foods) {
-            // If the choice is not in the list of valid choices
-            if (!array_key_exists($foods, DataLayer::getFood())) {
-                return false;
-            }
-        }
-
+//        if (empty($food)) {
+//            return true;
+//        }
+//        $foodArray = DataLayer::getFood();
+//
+//        foreach ($food as $foods) {
+//            // If the choice is not in the list of valid choices
+//            if (!in_array($foods, $foodArray)) {
+//                return false;
+//            }
+//        }
         return true;
     }
 
@@ -123,6 +119,6 @@ class Validation
             return true;
         }
         //else
-        return true;
+        return false;
     }
 }

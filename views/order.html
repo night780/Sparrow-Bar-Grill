@@ -26,7 +26,7 @@ order.html
     </div>
 </check>
 <check if="{{ isset(@SESSION['member']) }}">
-    <form class="container text-center mb-5 pb-5" action="#" method="post" id="orderForm">
+    <form class="container text-center" action="#" method="post" id="orderForm">
         <h1 class="text-center mt-5">Entrees</h1>
         <ul>
 
@@ -71,7 +71,7 @@ order.html
 
         <div class="text-right mt-4 mb-5">
             <!--submit-->
-            <button class="btn btn-primary btn-lg" type="submit">
+            <button class="btn btn-lg" type="submit" id="PlaceOrderButton">
                 Place Order
             </button>
         </div>
