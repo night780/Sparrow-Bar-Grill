@@ -28,16 +28,6 @@ class Validation
     }
 
     /**
-     * verifies valid qty max 15 of one item no negative nums
-     * @param $qty
-     * @return bool
-     */
-    static function validQty($qty): bool
-    {
-        return is_numeric($qty) and $qty <= 15 and $qty >= 0;
-    }
-
-    /**
      * verifies valid email
      * @param $email
      * @return bool
@@ -54,17 +44,18 @@ class Validation
      */
     static function validFood($food): bool
     {
-//        if (empty($food)) {
-//            return true;
-//        }
-//        $foodArray = DataLayer::getFood();
-//
-//        foreach ($food as $foods) {
-//            // If the choice is not in the list of valid choices
-//            if (!in_array($foods, $foodArray)) {
-//                return false;
-//            }
-//        }
+        if (empty($food)) {
+            return true;
+        }
+
+        // Loops through the user choices
+        foreach ($food as $foods) {
+            // If the choice is not in the list of valid choices
+            if (!array_key_exists($foods, DataLayer::getFood())) {
+                return false;
+            }
+        }
+
         return true;
     }
 
@@ -132,6 +123,6 @@ class Validation
             return true;
         }
         //else
-        return false;
+        return true;
     }
 }

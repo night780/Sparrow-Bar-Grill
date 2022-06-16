@@ -75,7 +75,7 @@ class DataLayer
 			}
 		}
 
-		return 'Not found';
+		return true;
 	}
 
 	static function getDrinkPrice($drink) {

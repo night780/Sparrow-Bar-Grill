@@ -61,10 +61,11 @@ class Controller
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$order = new MealOrder();
+            $total = array();
 
             // Getting the food seperated by a comma
             $food = "None";
-            if (Validation::validFood($food)) {
+            if (!empty($_SESSION['food'])) {
                 if (!empty($_POST['food'])) {
                     $food = implode(", ", $_POST['food']);
                 }
@@ -75,7 +76,7 @@ class Controller
 					if ($foodItem[0] == " ") {
 						$foodItem = substr($foodItem, 1);
 					}
-					$totalArray[] = DataLayer::getFoodPrice($foodItem);
+					$totalArray = DataLayer::getFoodPrice($foodItem);
 				}
             } else {
 				//if data is not valid store an error message
@@ -85,7 +86,7 @@ class Controller
 
             // Getting the drinks seperated by a comma
             $drinks = "None";
-            if (Validation::validDrink($drinks)) {
+            if (!empty($_SESSION['drinks'])) {
                 if (!empty($_POST['drinks'])) {
                     $drinks = implode(", ", $_POST['drinks']);
                 }
@@ -95,7 +96,7 @@ class Controller
 					if ($drinkItem[0] == " ") {
 						$drinkItem = substr($drinkItem, 1);
 					}
-					$totalArray[] = DataLayer::getDrinkPrice($drinkItem);
+					$totalArray = DataLayer::getDrinkPrice($drinkItem);
 				}
             } else {
 				//if data is not valid store an error message
@@ -124,6 +125,14 @@ class Controller
             $foodValue = 0;
             $foodValue = $foodValue + 1;
             $_SESSION['foods'] = $_POST[('foods' . $foodValue)];
+
+            if (Validation::validFood($food)) {
+                $f3->set('errors["food"]', 'Please enter a valid food');
+            }
+
+            if (Validation::validDrink($drinks)) {
+                $f3->set('errors["drinks"]', 'Please enter a valid drink');
+            }
 
             if (empty($this->_f3->get('errors'))) {
                 header('location: confirmation');
