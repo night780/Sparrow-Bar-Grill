@@ -95,17 +95,17 @@ class Validation
      */
     static function validDrink($drink): bool
     {
-//        if (empty($drink)) {
-//            return true;
-//        }
-//        $drinkArray = DataLayer::getDrinks();
-//        //validates drink name
-//        foreach ($drink as $drinks) {
-//            // If the choice is not in the list of valid choices
-//            if (!in_array($drinks, $drinkArray)) {
-//                return false;
-        //          }
-        //   }
+        if (empty($drink)) {
+            return true;
+        }
+        $drinkArray = DataLayer::getDrinks();
+        //validates drink name
+        foreach ($drink as $drinks) {
+            // If the choice is not in the list of valid choices
+            if (!in_array($drinks, $drinkArray)) {
+                return false;
+                  }
+           }
 
         return true;
     }

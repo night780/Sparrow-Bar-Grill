@@ -44,6 +44,7 @@ account.html
         <table class="table">
             <thead>
             <tr>
+                <th scope="col">Date (M.D.Y)</th>
                 <th scope="col">Food</th>
                 <th scope="col">Drinks</th>
                 <th scope="col">Total</th>
@@ -53,6 +54,7 @@ account.html
             <repeat group="{{ @result }}" value="{{ @row }}">
                 <check if="{{ @row[3] == @SESSION['member']->getMemberNum() }}">
                     <tr>
+                        <td>{{ @row[4] }}</td>
                         <td>{{ @row[0] }}</td>
                         <td>{{ @row[1] }}</td>
                         <td>${{ @row[2] }}</td>

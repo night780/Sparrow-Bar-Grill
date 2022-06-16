@@ -48,15 +48,6 @@ $f3->route('GET|POST /Account', function () use ($dbh, $f3) {
 });
 
 /**
- * Checks order status via order status page
- * @return void
- */
-$f3->route('GET|POST /status', function () {
-    global $con;
-    $con->orderStatus();
-});
-
-/**
  * Displays the menu
  * @return void
  */
@@ -80,26 +71,30 @@ $f3->route('GET|POST /Order', function ($f3) {
  * @return void
  */
 $f3->route('GET|POST /confirmation', function () use ($dbh) {
-    //1. define a query
-    $sql = "INSERT INTO orders (food, drinks, total, memberNum) 
-		VALUES (:food,:drinks,:total, :memberNum)";
+    if (isset($_SESSION['order'])) {
+        //1. define a query
+        $sql = "INSERT INTO orders (food, drinks, total, memberNum, date) 
+		VALUES (:food,:drinks,:total, :memberNum, :date)";
 
-    //2. prepare a statement ($dbh is in config.php so cannot see in editor)
-    $statement = $dbh->prepare($sql);
+        //2. prepare a statement ($dbh is in config.php so cannot see in editor)
+        $statement = $dbh->prepare($sql);
 
-    //3. bind parameters
-    $food = $_SESSION['order']->getFood();
-    $drinks = $_SESSION['order']->getDrinks();
-    $total = $_SESSION['order']->getTotal();
-	$memberNum = $_SESSION['order']->getMemberNum();
+        //3. bind parameters
+        $food = $_SESSION['order']->getFood();
+        $drinks = $_SESSION['order']->getDrinks();
+        $total = $_SESSION['order']->getTotal();
+        $memberNum = $_SESSION['order']->getMemberNum();
+        $date = date("m.d.y");
 
-    $statement->bindParam(':food', $food, PDO::PARAM_STR);
-    $statement->bindParam(':drinks', $drinks, PDO::PARAM_STR);
-    $statement->bindParam(':total', $total, PDO::PARAM_STR);
-	$statement->bindParam(':memberNum', $memberNum, PDO::PARAM_STR);
+        $statement->bindParam(':food', $food, PDO::PARAM_STR);
+        $statement->bindParam(':drinks', $drinks, PDO::PARAM_STR);
+        $statement->bindParam(':total', $total, PDO::PARAM_STR);
+        $statement->bindParam(':memberNum', $memberNum, PDO::PARAM_STR);
+        $statement->bindParam(':date', $date, PDO::PARAM_STR);
 
-    //4. execute
-    $statement->execute();
+        //4. execute
+        $statement->execute();
+    }
 
     global $con;
     $con->confirmation();
@@ -119,6 +114,12 @@ $f3->route('GET|POST /contact', function () {
  * @return void
  */
 $f3->route('GET|POST /Sign-up', function () use ($dbh, $f3) {
+    $sql="SELECT * FROM orders";
+    $statement=$dbh->prepare($sql);
+    $statement->execute();
+    $result=$statement->fetchAll();
+    $f3->set('result', $result);
+
 	global $con;
     $con->signUp($f3);
 });

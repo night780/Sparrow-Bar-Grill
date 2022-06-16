@@ -54,27 +54,17 @@ class Controller
     }
 
     /**
-     * Checks order status via order status page
-     * @return void
-     */
-    function orderStatus()
-    {
-        $view = new Template();
-        echo $view->render('views/status.php');
-    }
-
-    /**
      * order page routing
      * @return void
      */
     function order($f3)
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && (isset($_POST['food']) || isset($_POST['drinks']))) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$order = new MealOrder();
 
             // Getting the food seperated by a comma
             $food = "None";
-            if (isset($_POST['food']) && Validation::validFood($food)) {
+            if (Validation::validFood($food)) {
                 if (!empty($_POST['food'])) {
                     $food = implode(", ", $_POST['food']);
                 }
@@ -95,7 +85,7 @@ class Controller
 
             // Getting the drinks seperated by a comma
             $drinks = "None";
-            if (isset($_POST['drinks']) && Validation::validDrink($drinks)) {
+            if (Validation::validDrink($drinks)) {
                 if (!empty($_POST['drinks'])) {
                     $drinks = implode(", ", $_POST['drinks']);
                 }
@@ -153,7 +143,7 @@ class Controller
      */
     function confirmation()
     {
-		if (get_class($_SESSION['member']) == 'VIPMember') {
+		if (isset($_SESSION['order']) && get_class($_SESSION['member']) == 'VIPMember') {
 			$_SESSION['member']->setRewardsPoints(10);
 		}
 
@@ -177,7 +167,11 @@ class Controller
      */
     function signUp($f3)
     {
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (empty($this->_f3->get('result'))) {
+            $f3->set('errors["alreadyMember"]', 'This email address is being used.\nPlease sign in.');
+        }
+
+		if ($_SERVER['REQUEST_METHOD'] == 'POST' && empty($this->_f3->get('result'))) {
 			// First name
 			if (isset($_POST['fname'])) {
 				$fname = $_POST['fname'];
@@ -211,6 +205,13 @@ class Controller
 				$f3->set('errors["email"]', 'Please enter a valid email');
 			}
 			$this->_f3->set('email', $email);
+
+            $result = $this->_f3->get('result');
+            for ($i = 0; $i < count($result); $i++) {
+                if ($result[3] == $email) {
+                    $f3->set('errors["alreadyMember"]', 'This email address is being used.\nPlease sign in.');
+                }
+            }
 
 			if(isset($_POST['isVIP'])){
 				$member = new VIPMember('0');

@@ -41,7 +41,7 @@ header.html
                 <a class="nav-item nav-link border-0" href="Sign-in">Sign In</a>
             </check>
 
-            <check if="{{ isset($_SESSION['member']) && get_class($_SESSION['member']) != 'VIPMember' }}">
+            <check if="{{ !isset($_SESSION['member']) }}">
                 <a class="nav-link ml-auto justify-content-end border-0" href="Sign-up"
                    Id="signUp"><b>Sign Up Today!</b></a>
             </check>
