@@ -69,7 +69,7 @@ class Controller
      */
     function order($f3)
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && (isset($_POST['food']) || isset($_POST['drinks']))) {
 			$order = new MealOrder();
 
             // Getting the food seperated by a comma
