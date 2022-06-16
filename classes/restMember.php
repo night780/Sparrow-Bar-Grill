@@ -63,6 +63,7 @@ class RestMember
     }
 
 	/**
+	 * Returns the email of the member
 	 * @return mixed
 	 */
 	public function getEmail() {
@@ -70,6 +71,7 @@ class RestMember
 	}
 
 	/**
+	 * Sets the email of the member
 	 * @param mixed $email
 	 */
 	public function setEmail($email): void {
@@ -77,6 +79,7 @@ class RestMember
 	}
 
 	/**
+	 * Returns the password of the member
 	 * @return mixed
 	 */
 	public function getPassword() {
@@ -84,6 +87,7 @@ class RestMember
 	}
 
 	/**
+	 * Sets the password of the member
 	 * @param mixed $password
 	 */
 	public function setPassword($password): void {
@@ -91,13 +95,15 @@ class RestMember
 	}
 
 	/**
+	 * Returns the member number
 	 * @return mixed
 	 */
 	public function getMemberNum() {
-		return 8;
+		return $this->_memberNum;
 	}
 
 	/**
+	 * Sets the member number
 	 * @param mixed $memberNum
 	 */
 	public function setMemberNum($memberNum): void {

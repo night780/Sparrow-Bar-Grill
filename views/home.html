@@ -23,7 +23,12 @@ home.html
             TV's, Pool &
             Air-hockey, Dancing, and so much more! </h5>
         <div class="d-flex justify-content-evenly">
-            <a class="btn btn-lg" href="Order" id="orderButton1">Order Now!</a>
+            <check if="{{ isset($_SESSION['member']) }}">
+                <a class="btn btn-lg btn-primary orderButton1" href="Order">Order Now!</a>
+            </check>
+            <check if="{{ !isset($_SESSION['member']) }}">
+                <a class="btn btn-lg btn-primary orderButton1" href="Sign-up">Sign Up!</a>
+            </check>
         </div>
     </div>
 </div>

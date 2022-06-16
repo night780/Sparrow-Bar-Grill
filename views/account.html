@@ -1,0 +1,68 @@
+<!--
+
+Checks if user is logged in and as a VIP or regular user, if VIP then displays points.
+    if not vip but regular user we ask if they would like to upgrade there account if not a user,
+    then sent to sign-up page
+
+account.html
+@Authors : William Wittig, Jacob Jonas
+@Last-edit-date : 5/8/22
+-->
+
+<include href="views/includes/header.html"></include>
+<div class="text-center m-5 mb-0">
+    <h1>Account Page</h1>
+    <hr>
+</div>
+<check if="{{ !isset(@SESSION['member']) }}">
+    <div class="text-center">
+        <span class="text-danger">Please sign in to view page</span>
+    </div>
+</check>
+
+<check if="{{ isset($_SESSION['member']) }}">
+    <div class="text-center">
+        <h3>Welcome back - {{ @SESSION.member->getFname() }}!</h3>
+        <check if="{{ get_class($_SESSION['member']) == 'VIPMember' }}">
+            <h5 class="mt-4">You have {{ @SESSION.member->getRewardsPoints() }} rewards points! </h5>
+        </check>
+        <br>
+        <div class="container">
+            <h3>Seats available for reservation:</h3>
+            <button class="btn btn-primary buttonVIP"> A2</button>
+            <button class="btn btn-primary buttonVIP"> A3</button>
+            <button class="btn btn-primary buttonVIP"> C5</button>
+            <button class="btn btn-primary buttonVIP"> C7</button>
+            <button class="btn btn-primary buttonVIPTable"> Table 2</button>
+            <button class="btn btn-primary buttonVIPTable"> Table 4</button>
+        </div>
+        <button class="btn btn-primary m-3 mt-4">Submit Reservation</button>
+    </div>
+
+    <div class="m-5 mt-2 p-5 text-center">
+        <h3>Previous Orders</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Food</th>
+                <th scope="col">Drinks</th>
+                <th scope="col">Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <repeat group="{{ @result }}" value="{{ @row }}">
+                <check if="{{ @row[3] == @SESSION['member']->getMemberNum() }}">
+                    <tr>
+                        <td>{{ @row[0] }}</td>
+                        <td>{{ @row[1] }}</td>
+                        <td>${{ @row[2] }}</td>
+                    </tr>
+                </check>
+            </repeat>
+
+            </tbody>
+        </table>
+    </div>
+</check>
+
+<include href="views/includes/footer.html"></include>

@@ -18,67 +18,64 @@ order.html
 
 <div class="text-center mt-5">
     <h1>Order Page</h1>
-    <hr class="style1">
+    <hr>
 </div>
-
-<form class="container text-center" action="#" method="post" id="orderForm">
-    <h1 class="text-center mt-5">Entrees</h1>
-    <ul>
-
-
-        <repeat group="{{ @food }}" key="{{ @name }}" value="{{ @price }}" class="food">
-            <li>
-                <input type="checkbox" name="food[]" value="{{ @name }}"
-                       id="{{ @name }}" class="food"/>
-                <label for="{{ @name }}">
-                    <h5>
-                        {{ @name }}
-                        <div class="small">~ ${{ @price }}
-                        </div>
-                    </h5>
-                    <img src="images/Food/{{ str_replace('/', '', str_replace
-                    (' ', '', strtolower(@name))) }}.jpg"/>
-
-<!--                    <div class="form-outline m-2 ">-->
-<!--                        <span>Quantity:</span>-->
-<!--                        <input type="number" class="form-control text-center w-50 mx-auto mt-2" value="0"/>-->
-<!--                    </div>-->
-                </label>
-            </li>
-        </repeat>
-    </ul>
-
-    <hr class="style1">
-
-    <h1 class="text-center mt-5">Drinks</h1>
-
-    <ul>
-        <repeat group="{{ @drinks }}" key="@drinkName" value="{{ @drinkPrice }}" class="drinks">
-            <li>
-                <input type="checkbox" name="drinks[]" value="{{ @drinkName }}"
-                       id="{{ @drinkName }}" class="drinks"/>
-
-                <label for="{{ @drinkName }}">
-                    <h5>
-                        {{ @drinkName }}
-                        <div class="small">~ ${{ @drinkPrice }}</div>
-                    </h5>
-                    <img src="images/Drinks/{{ str_replace(' ', '', strtolower(@drinkName)) }}.jpg"/>
-<!--                    <div class="form-outline m-2">-->
-<!--                        <span>Quantity:</span>-->
-<!--                        <input type="number" class="form-control text-center" value="0"/>-->
-<!--                    </div>-->
-                </label>
-            </li>
-        </repeat>
-    </ul>
-
-    <div class="text-right mt-4 mb-5">
-        <!--submit-->
-        <button class="btn btn-lg" type="submit" id="PlaceOrderButton">
-            Place Order
-        </button>
+<check if="{{ !isset(@SESSION['member']) }}">
+    <div class="text-center">
+        <span class="text-danger">Please sign in to order</span>
     </div>
-</form>
+</check>
+<check if="{{ isset(@SESSION['member']) }}">
+    <form class="container text-center" action="#" method="post" id="orderForm">
+        <h1 class="text-center mt-5">Entrees</h1>
+        <ul>
+
+
+            <repeat group="{{ @food }}" key="{{ @name }}" value="{{ @price }}" class="food">
+                <li>
+                    <input type="checkbox" name="food[]" value="{{ @name }}"
+                           id="{{ @name }}" class="food"/>
+                    <label for="{{ @name }}">
+                        <h5>
+                            {{ @name }}
+                            <div class="small">~ ${{ @price }}
+                            </div>
+                        </h5>
+                        <img src="images/Food/{{ str_replace('/', '', str_replace
+                        (' ', '', strtolower(@name))) }}.jpg"/>
+                    </label>
+                </li>
+            </repeat>
+        </ul>
+
+        <hr class="style1">
+
+        <h1 class="text-center mt-5">Drinks</h1>
+
+        <ul>
+            <repeat group="{{ @drinks }}" key="@drinkName" value="{{ @drinkPrice }}" class="drinks">
+                <li>
+                    <input type="checkbox" name="drinks[]" value="{{ @drinkName }}"
+                           id="{{ @drinkName }}" class="drinks"/>
+
+                    <label for="{{ @drinkName }}">
+                        <h5>
+                            {{ @drinkName }}
+                            <div class="small">~ ${{ @drinkPrice }}</div>
+                        </h5>
+                        <img src="images/Drinks/{{ str_replace(' ', '', strtolower(@drinkName)) }}.jpg"/>
+                    </label>
+                </li>
+            </repeat>
+        </ul>
+
+        <div class="text-right mt-4 mb-5">
+            <!--submit-->
+            <button class="btn btn-lg" type="submit" id="PlaceOrderButton">
+                Place Order
+            </button>
+        </div>
+    </form>
+</check>
 
 <include href="views/includes/footer.html"></include>

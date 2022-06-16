@@ -8,6 +8,7 @@ class MealOrder
     private $_food;
     private $_drinks;
     private $_total;
+	private $_memberNum;
 
     /**
      * Retrieves the food from the order
@@ -62,4 +63,20 @@ class MealOrder
     {
         $this->_total = $total;
     }
+
+	/**
+	 * Returns the member number of the meal
+	 * @return mixed
+	 */
+	public function getMemberNum() {
+		return $this->_memberNum;
+	}
+
+	/**
+	 * Sets the member number of the meal
+	 * @param mixed $memberNum
+	 */
+	public function setMemberNum($memberNum): void {
+		$this->_memberNum=$memberNum;
+	}
 }

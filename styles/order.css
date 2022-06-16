@@ -31,7 +31,6 @@ label::before {
 label img {
     height: 200px;
     width: 200px;
-
 }
 
 :checked + label::before {
@@ -77,5 +76,4 @@ img {
 .quantity {
     opacity: .85;
     border-radius: 30px;
-
 }

@@ -1,9 +1,4 @@
 <?php
-// Turn on error reporting
-//TODO: REMOVE BEFORE SUBMITTING DEBUGGING ONLY
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
 // Require the autoload file
 require_once('vendor/autoload.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/../config.php');
@@ -23,7 +18,6 @@ session_start();
  * @return void
  */
 $f3->route('GET /', function () {
-	var_dump($_SESSION);
     global $con;
     $con->home();
 });
@@ -33,7 +27,6 @@ $f3->route('GET /', function () {
  * @return void
  */
 $f3->route('GET /home', function () {
-	var_dump($_SESSION);
     global $con;
     $con->home();
 });
@@ -42,29 +35,16 @@ $f3->route('GET /home', function () {
  * VIP page routing
  * @return void
  */
-$f3->route('GET|POST /VIP', function () use ($dbh) {
-	if (isset($_SESSION['member']) && get_class($_SESSION['member']) == "VIPMember") {
-		$sql="SELECT * FROM members";
+$f3->route('GET|POST /Account', function () use ($dbh, $f3) {
+	if (isset($_SESSION['member'])) {
+		$sql="SELECT * FROM orders WHERE memberNum =".$_SESSION['member']->getMemberNum();
 		$statement=$dbh->prepare($sql);
 		$statement->execute();
 		$result=$statement->fetchAll();
-
-		$memberNum=-1;
-		for ($i=0;$i<count($result);$i++) {
-			if ($_SESSION['member']->getEmail()==$result[$i]['email']) {
-				$memberNum=$result[$i]['memberNum'];
-				echo $memberNum;
-			}
-		}
-
-		var_dump($_SESSION);
-		// var_dump($result);
-		global $con;
-		$con->vip();
-	} else {
-		global $con;
-		$con->home();
+		$f3->set('result',$result);
 	}
+	global $con;
+	$con->account();
 });
 
 /**
@@ -72,9 +52,17 @@ $f3->route('GET|POST /VIP', function () use ($dbh) {
  * @return void
  */
 $f3->route('GET|POST /status', function () {
-	var_dump($_SESSION);
     global $con;
     $con->orderStatus();
+});
+
+/**
+ * Displays the menu
+ * @return void
+ */
+$f3->route('GET|POST /menu', function () {
+	global $con;
+	$con->menu();
 });
 
 /**
@@ -83,7 +71,6 @@ $f3->route('GET|POST /status', function () {
  * @return void
  */
 $f3->route('GET|POST /Order', function ($f3) {
-	var_dump($_SESSION);
     global $con;
     $con->order($f3);
 });
@@ -93,22 +80,23 @@ $f3->route('GET|POST /Order', function ($f3) {
  * @return void
  */
 $f3->route('GET|POST /confirmation', function () use ($dbh) {
-	var_dump($_SESSION);
     //1. define a query
-    $sql = "INSERT INTO orders (food, drinks, total) VALUES (:food,:drinks,:total)";
+    $sql = "INSERT INTO orders (food, drinks, total, memberNum) 
+		VALUES (:food,:drinks,:total, :memberNum)";
 
     //2. prepare a statement ($dbh is in config.php so cannot see in editor)
     $statement = $dbh->prepare($sql);
 
     //3. bind parameters
-    //var_dump($_POST);
     $food = $_SESSION['order']->getFood();
     $drinks = $_SESSION['order']->getDrinks();
     $total = $_SESSION['order']->getTotal();
+	$memberNum = $_SESSION['order']->getMemberNum();
 
     $statement->bindParam(':food', $food, PDO::PARAM_STR);
     $statement->bindParam(':drinks', $drinks, PDO::PARAM_STR);
     $statement->bindParam(':total', $total, PDO::PARAM_STR);
+	$statement->bindParam(':memberNum', $memberNum, PDO::PARAM_STR);
 
     //4. execute
     $statement->execute();
@@ -122,7 +110,6 @@ $f3->route('GET|POST /confirmation', function () use ($dbh) {
  * @return void
  */
 $f3->route('GET|POST /contact', function () {
-	var_dump($_SESSION);
     global $con;
     $con->contact();
 });
@@ -132,13 +119,14 @@ $f3->route('GET|POST /contact', function () {
  * @return void
  */
 $f3->route('GET|POST /Sign-up', function () use ($dbh, $f3) {
-	// var_dump($_SESSION);
 	global $con;
     $con->signUp($f3);
 });
 
+/**
+ * Confirms the sign up
+ */
 $f3->route('GET|POST /signUpConfirm', function () use ($dbh, $f3) {
-	// var_dump($_SESSION);
 	//1. define a query
 	$sql = "INSERT INTO members (fname, lname, email, pass, isVIP) 
 			VALUES (:fname, :lname, :email, :pass, :isVIP)";
@@ -221,7 +209,6 @@ $f3->route('GET|POST /Sign-in', function () use ($dbh, $f3) {
 		}
 	}
 
-	var_dump($_SESSION);
     global $con;
     $con->signIn($f3);
 });
@@ -231,15 +218,15 @@ $f3->route('GET|POST /Sign-in', function () use ($dbh, $f3) {
  * @return void
  */
 $f3->route('GET|POST /login', function () {
-	var_dump($_SESSION);
     global $con;
     $con->logIn();
 });
 
+/**
+ * Signs out the user
+ */
 $f3->route('GET|POST /Sign-out', function () {
-	var_dump($_SESSION);
 	session_destroy();
-
 	global $con;
 	$con->home();
 });

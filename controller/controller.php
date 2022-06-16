@@ -30,14 +30,27 @@ class Controller
         echo $view->render('views/home.html');
     }
 
+	/**
+	 * Displays the menu
+	 * @return void
+	 */
+	function menu() {
+		$this->_f3->set('food', DataLayer::getFood());
+		$this->_f3->set('drinks', DataLayer::getDrinks());
+
+		$view = new Template();
+		echo $view->render('views/menu.html');
+	}
+
+
     /**
      * vip page routing
      * @return void
      */
-    function vip()
+    function account()
     {
         $view = new Template();
-        echo $view->render('views/vip.html');
+        echo $view->render('views/account.html');
     }
 
     /**
@@ -110,6 +123,7 @@ class Controller
                 $f3->set('errors["price"]', 'Please do not edit the prices');
             }
 			$order->setTotal($total);
+			$order->setMemberNum($_SESSION['member']->getMemberNum());
 
 			$_SESSION['order'] = $order;
 
@@ -139,9 +153,12 @@ class Controller
      */
     function confirmation()
     {
+		if (get_class($_SESSION['member']) == 'VIPMember') {
+			$_SESSION['member']->setRewardsPoints(10);
+		}
+
         $view = new Template();
         echo $view->render('views/confirmation.html');
-        session_destroy();
     }
 
     /**
@@ -216,6 +233,10 @@ class Controller
         echo $view->render('views/signUp.html');
     }
 
+	/**
+	 * Confirms the sign up form
+	 * @return void
+	 */
 	function signUpConfirm() {
 		$view = new Template();
 		echo $view->render('views/signUpConfirm.html');

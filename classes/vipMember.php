@@ -31,6 +31,6 @@ class VIPMember extends RestMember
      */
     public function setRewardsPoints($rewardsPoints): void
     {
-        $this->_rewardsPoints = $rewardsPoints;
+        $this->_rewardsPoints += $rewardsPoints;
     }
 }

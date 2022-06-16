@@ -1,0 +1,62 @@
+<!--
+
+Here a user will be able to place an order. We will offer lunch and dinner menus that
+change each day around 5pm The drink menu will be available all the time. A VIP user will see
+there loyalty points and use them for a % off there order.
+
+TODO: Setup/fix Form Posting, Add qty update when clicked. When user field is made, add feature to check here maybe
+
+Order placed -> confirmation page
+
+order.html
+@Authors : William Wittig, Jacob Jonas
+@Last-edit-date : 5/8/22
+-->
+
+<include href="views/includes/header.html"></include>
+<link rel="stylesheet" href="styles/order.css">
+
+<div class="text-center mt-5">
+	<h1>Menu</h1>
+	<hr>
+
+	<div class="p-5 pt-0">
+		<h1 class="mt-5">Entrees</h1>
+		<ul>
+			<repeat group="{{ @food }}" key="{{ @name }}" value="{{ @price }}" class="food">
+				<li>
+					<label>
+						<h5>
+							{{ @name }}
+							<div class="small">~ ${{ @price }}
+							</div>
+						</h5>
+						<img src="images/Food/{{ str_replace('/', '', str_replace
+							(' ', '', strtolower(@name))) }}.jpg"/>
+					</label>
+				</li>
+			</repeat>
+		</ul>
+
+		<hr class="style1">
+
+		<h1 class="text-center mt-5">Drinks</h1>
+
+		<ul>
+			<repeat group="{{ @drinks }}" key="@drinkName" value="{{ @drinkPrice }}" class="drinks">
+				<li>
+					<label>
+						<h5>
+							{{ @drinkName }}
+							<div class="small">~ ${{ @drinkPrice }}</div>
+						</h5>
+						<img src="images/Drinks/{{ str_replace(' ', '', strtolower(@drinkName)) }}.jpg"/>
+					</label>
+				</li>
+			</repeat>
+		</ul>
+	</div>
+</div>
+
+
+<include href="views/includes/footer.html"></include>
