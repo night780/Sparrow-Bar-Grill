@@ -9,16 +9,6 @@ signIn.html
 -->
 
 <include href="views/includes/header.html"></include>
-<div class="text-center"><h1>Login Page</h1>
-    <p>Construction! Please come back later</p>
-    <p>Here the user will log in as either an admin, vip, or standard user</p>
-    <p>Admin User login->AdminPage | VIP User login -> VIP | Standard user
-        login -> home | Not user -> SignUp</p>
-</div>
-
-
-</head>
-<body>
 
 <div
         id="jumbotronContainer"
@@ -42,24 +32,23 @@ signIn.html
                             placeholder="Email"
                             type="email"
                     />
-                    <span id="emailErr" class="text-danger error"
-                    >That is the incorrect email</span
-                    >
                 </div>
+
                 <!-- form-group// -->
                 <div class="form-group">
                     <label>Your password</label>
                     <input
+                            name="password"
                             id="password"
                             class="sign form-control"
                             placeholder="******"
                             type="password"
                     />
-                    <span id="passwordErr" class="text-danger error"
-                    >That is the incorrect password</span
-                    >
+                    <check if="{{ isset(@errors['login']) }}">
+                        <span class="text-danger">{{ @errors['login'] }}</span>
+                    </check>
                 </div>
-                <br>
+
                 <!-- form-group// -->
                 <div class="form-group">
                     <div class="checkbox">

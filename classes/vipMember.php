@@ -3,7 +3,7 @@
 /**
  * This class represents a VIP member
  */
-class VIP_Member extends Member
+class VIPMember extends RestMember
 {
     private $_rewardsPoints;
 

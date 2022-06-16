@@ -57,67 +57,61 @@ class Controller
     function order($f3)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
+			$order = new MealOrder();
 
             // Getting the food seperated by a comma
             $food = "None";
-            if (isset($_POST['food'])) {
+            if (isset($_POST['food']) && Validation::validFood($food)) {
                 if (!empty($_POST['food'])) {
                     $food = implode(", ", $_POST['food']);
                 }
-            }
-            if (Validation::validFood($food)) {
-                // Calculating to cost for the food
-                $totalArray = array();
-                $foodArray = explode(',', $food);
-                foreach ($foodArray as $foodItem) {
-                    if ($foodItem[0] == " ") {
-                        $foodItem = substr($foodItem, 1);
-                    }
-                    $totalArray[] = DataLayer::getFoodPrice($foodItem);
-                }
-                // Setting the food session variable
-                $_SESSION['food'] = $food;
-            }else {
-                //if data is not valid store an error message
-                $f3->set('errors["food"]', 'Please enter a valid food');
-            }
+				// Calculating to cost for the food
+				$totalArray = array();
+				$foodArray = explode(',', $food);
+				foreach ($foodArray as $foodItem) {
+					if ($foodItem[0] == " ") {
+						$foodItem = substr($foodItem, 1);
+					}
+					$totalArray[] = DataLayer::getFoodPrice($foodItem);
+				}
+            } else {
+				//if data is not valid store an error message
+				$f3->set('errors["food"]', 'Please enter a valid food');
+			}
+			$order->setFood($food);
 
             // Getting the drinks seperated by a comma
             $drinks = "None";
-            if (isset($_POST['drinks'])) {
+            if (isset($_POST['drinks']) && Validation::validDrink($drinks)) {
                 if (!empty($_POST['drinks'])) {
                     $drinks = implode(", ", $_POST['drinks']);
                 }
-            }
-
-            if (Validation::validFood($drinks)) {
-                // Calculating to cost for the drinks
-                $drinkArray = explode(',', $drinks);
-                foreach ($drinkArray as $drinkItem) {
-                    if ($drinkItem[0] == " ") {
-                        $drinkItem = substr($drinkItem, 1);
-                    }
-                    $totalArray[] = DataLayer::getDrinkPrice($drinkItem);
-                    $_SESSION['drinks'] = $drinks;
-                }
-            }else {
-                //if data is not valid store an error message
-                $f3->set('errors["drinks"]', 'Please enter a valid drink');
-            }
+				// Calculating to cost for the drinks
+				$drinkArray = explode(',', $drinks);
+				foreach ($drinkArray as $drinkItem) {
+					if ($drinkItem[0] == " ") {
+						$drinkItem = substr($drinkItem, 1);
+					}
+					$totalArray[] = DataLayer::getDrinkPrice($drinkItem);
+				}
+            } else {
+				//if data is not valid store an error message
+				$f3->set('errors["drinks"]', 'Please enter a valid drink');
+			}
+			$order->setDrinks($drinks);
 
             if (Validation::validDrinkPrice($drinks) or
                 Validation::validFoodPrice($food)) {
                 // Total cost
                 $total = array_sum($totalArray);
                 $total = number_format($total, 2, ".", ",");
-                $_SESSION['total'] = $total;
-            }else {
+            } else {
                 //if data is not valid store an error message
                 $f3->set('errors["price"]', 'Please do not edit the prices');
             }
-            // Setting session variables
-            $_SESSION['CT'] = $_POST['CT'];
+			$order->setTotal($total);
+
+			$_SESSION['order'] = $order;
 
             // This is for the CSS in order. Increments ID (food1,food2,food3...)
             $drinkValue = 0;
@@ -128,7 +122,6 @@ class Controller
             $_SESSION['foods'] = $_POST[('foods' . $foodValue)];
 
             if (empty($this->_f3->get('errors'))) {
-                // var_dump($_SESSION);
                 header('location: confirmation');
             }
         }
@@ -146,7 +139,6 @@ class Controller
      */
     function confirmation()
     {
-        // var_dump($_SESSION);
         $view = new Template();
         echo $view->render('views/confirmation.html');
         session_destroy();
@@ -168,41 +160,66 @@ class Controller
      */
     function signUp($f3)
     {
-        $_SESSION['pass'] = $_POST['pass'];
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			// First name
+			if (isset($_POST['fname'])) {
+				$fname = $_POST['fname'];
+			} else {
+				//if data is not valid store an error message
+				$f3->set('errors["fname"]', 'Please enter a valid first name');
+			}
+			$this->_f3->set('fname', $fname);
 
-        $fname = $_POST['fname'];
-        $lname = $_POST['lname'];
-        $email = $_POST['email'];
-        $vip = $_POST['isVIP'];
+			// Last name
+			if (isset($_POST['lname'])) {
+				$lname = $_POST['lname'];
+			} else {
+				//if data is not valid store an error message
+				$f3->set('errors["lname"]', 'Please enter a valid last name');
+			}
+			$this->_f3->set('lname', $lname);
 
-        if (Validation::validname($fname)) {
-            $_SESSION['fname'] = $_POST['fname'];
-        }else {
-            //if data is not valid store an error message
-            $f3->set('errors["fname"]', 'Please enter a valid name');
-        }
-        if (Validation::validname($lname)) {
-            $_SESSION['lname'] = $_POST['lname'];
-        }else {
-            //if data is not valid store an error message
-            $f3->set('errors["lname"]', 'Please enter a valid name');
-        }
-        if(Validation::validEmail($email)){
-            $_SESSION['email'] = $_POST['email'];
-        }else {
-            //if data is not valid store an error message
-            $f3->set('errors["email"]', 'Please enter a valid email');
-        }
-        if(Validation::validVip($vip)){
-            $_SESSION['isVIP'] = $_POST['isVIP'];
+			if(isset($_POST['pass'])){
+				$pass = $_POST['pass'];
+			}else {
+				//if data is not valid store an error message
+				$f3->set('errors["pass"]', 'Please enter a valid password');
+			}
+			$this->_f3->set('pass', $pass);
 
-        }else {
-            //if data is not valid store an error message
-            $f3->set('errors["vip"]', 'Not valid VIP status');
-        }
+			if(isset($_POST['email'])){
+				$email = $_POST['email'];
+			} else {
+				//if data is not valid store an error message
+				$f3->set('errors["email"]', 'Please enter a valid email');
+			}
+			$this->_f3->set('email', $email);
+
+			if(isset($_POST['isVIP'])){
+				$member = new VIPMember('0');
+				$member->setFname($fname);
+				$member->setLname($lname);
+				$member->setEmail($email);
+				$member->setPassword($pass);
+				$member->setRewardsPoints(0);
+				$_SESSION['member'] = $member;
+			} else {
+				$_SESSION['member'] = new RestMember($fname, $lname, $email, $pass);
+			}
+
+			if (empty($this->_f3->get('errors'))) {
+				header('location: signUpConfirm');
+			}
+		}
+
         $view = new Template();
         echo $view->render('views/signUp.html');
     }
+
+	function signUpConfirm() {
+		$view = new Template();
+		echo $view->render('views/signUpConfirm.html');
+	}
 
     /**
      * Sign in Page routing

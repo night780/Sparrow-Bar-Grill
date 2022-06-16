@@ -1,0 +1,27 @@
+<!--
+
+Our css Styling live here
+
+styleSheet.css
+@Authors : William Wittig, Jacob Jonas
+@Last-edit-date : 5/8/22
+-->
+
+<include href="views/includes/header.html"></include>
+<div class="text-center mt-5"><h1>Confirmation page</h1>
+	<div class="container">
+		<p>Thank you for signing up with Sparrow Bar & Grill!</p>
+		<h3 class="list-group-item-success rounded-pill" id="item-success">
+			Order
+			Submitted</h3>
+	</div>
+
+	<div class="p-2 border rounded-bottom w-75 mx-auto mt-5">
+		<span class="d-block">First Name: {{ @SESSION.member->getFname() }}</span>
+		<span class="d-block">Last Name: {{ @SESSION.member->getLname() }}</span>
+		<span class="d-block">Email: {{ @SESSION.member->getEmail() }}</span>
+		<span class="d-block">Password: {{ @SESSION.member->getPassword() }}</span>
+	</div>
+</div>
+
+<include href="views/includes/footer.html"></include>
