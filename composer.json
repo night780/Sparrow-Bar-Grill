@@ -2,13 +2,13 @@
   "name" : "TeamSparrow",
   "authors" : [
     {
-      "name": "William Wittig",
-      "email": "wittig.william@student.greenriver.edu"
+      "name": "William W",
+      "email": ""
     },
 
     {
-      "name": "Jacob Jonas",
-      "email": "jonas.jacob@student.greenriver.edu"
+      "name": "Jacob J",
+      "email": ""
     }
   ],
   "require" : {
